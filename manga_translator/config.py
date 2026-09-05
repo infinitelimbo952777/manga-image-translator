@@ -339,6 +339,8 @@ class Config(BaseModel):
     # ?
     force_simple_sort: bool = False
     """Don't use panel detection for sorting, use a simpler fallback logic instead"""
+    panel_sort_downscale: int = 1
+    """Downscale factor for panel detection during sorting (1 = off). E.g. 2 runs panel detection on a half-resolution copy and maps panels back, roughly halving the sorting cost with minor fidelity loss."""
     kernel_size: int = 3
     """Set the convolution kernel size of the text erasure area to completely clean up text residues"""
     mask_dilation_offset: int = 20

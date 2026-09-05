@@ -11,7 +11,8 @@ def sort_regions(
         regions: List[TextBlock],
         right_to_left: bool = True,
         img: np.ndarray = None,
-        force_simple_sort: bool = False
+        force_simple_sort: bool = False,
+        panel_sort_downscale: int = 1
 ) -> List[TextBlock]:
     if not regions:
         return []
@@ -23,7 +24,7 @@ def sort_regions(
     # 1. Panel detection + sorting within panels
     if img is not None:
         try:
-            panels_raw = get_panels_from_array(img, rtl=right_to_left)
+            panels_raw = get_panels_from_array(img, rtl=right_to_left, downscale=max(1, panel_sort_downscale))
             # Convert to [x1, y1, x2, y2]
             panels = [(x, y, x + w, y + h) for x, y, w, h in panels_raw]
             # Use the customised sorter that keeps vertically stacked panels together.

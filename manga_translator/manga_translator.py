@@ -906,8 +906,9 @@ class MangaTranslator:
             text_regions,
             right_to_left=config.render.rtl,
             img=ctx.img_rgb,
-            force_simple_sort=config.force_simple_sort
-        )   
+            force_simple_sort=config.force_simple_sort,
+            panel_sort_downscale=getattr(config, 'panel_sort_downscale', 1) or 1
+        )
         
         return text_regions
 
