@@ -118,21 +118,14 @@ def get_digest(file_path: str) -> str:
 
 def get_image_md5(image) -> str:
     """计算PIL Image对象的MD5哈希值，确保相同图片内容产生相同的哈希值"""
-    import io
-    from PIL import Image
-
     try:
-        # 将PIL Image转换为字节数据进行MD5计算
-        img_byte_arr = io.BytesIO()
         # 统一转换为RGB格式以确保一致性
         if hasattr(image, 'mode') and image.mode != 'RGB':
             image = image.convert('RGB')
-        image.save(img_byte_arr, format='PNG')
-        img_bytes = img_byte_arr.getvalue()
-
-        # 计算MD5哈希值
+        # 直接对原始像素字节做MD5：批量翻译时每张图都会调用本函数，
+        # 全图PNG编码的开销（数十毫秒/张）换原始字节哈希（毫秒级）语义不变
         h = hashlib.md5()
-        h.update(img_bytes)
+        h.update(image.tobytes())
         return h.hexdigest()[:8]  # 只取前8位，避免文件夹名过长
     except Exception as e:
         # 如果计算失败，返回基于时间戳的fallback值
