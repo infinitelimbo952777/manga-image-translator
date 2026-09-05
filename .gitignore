@@ -65,3 +65,4 @@ benchmark/backup/
 benchmark/opt_stage/
 benchmark/*.log
 benchmark/results/*.prof
+benchmark/bg_crops/

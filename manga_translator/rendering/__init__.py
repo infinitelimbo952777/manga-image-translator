@@ -242,7 +242,8 @@ async def dispatch(
     hyphenate: bool = True,
     render_mask: np.ndarray = None,
     line_spacing: int = None,
-    disable_font_border: bool = False
+    disable_font_border: bool = False,
+    adaptive_bg_color: bool = False
     ) -> np.ndarray:
 
     text_render.set_font(font_path)
@@ -258,8 +259,33 @@ async def dispatch(
         if render_mask is not None:
             # set render_mask to 1 for the region that is inside dst_points
             cv2.fillConvexPoly(render_mask, dst_points.astype(np.int32), 1)
-        img = render(img, region, dst_points, hyphenate, line_spacing, disable_font_border)
+        img = render(img, region, dst_points, hyphenate, line_spacing, disable_font_border, adaptive_bg_color)
     return img
+
+def sample_background_color(img: np.ndarray, dst_points, detected_bg):
+    """Median color of the pixels under the text polygon on the inpainted image.
+
+    The inpainted area is the actual background the translated text will be
+    drawn on, so using its median as the glyph stroke color keeps the outline
+    consistent with the surrounding background instead of snapping to pure
+    black/white when the OCR-predicted bg color is off. Falls back to the
+    detected bg when the sample is too small to be meaningful.
+    """
+    h, w = img.shape[:2]
+    x, y, bw, bh = cv2.boundingRect(dst_points.astype(np.int32))
+    x0, y0 = max(x - 2, 0), max(y - 2, 0)
+    x1, y1 = min(x + bw + 2, w), min(y + bh + 2, h)
+    if x1 <= x0 or y1 <= y0:
+        return detected_bg
+    crop = img[y0:y1, x0:x1]
+    mask = np.zeros(crop.shape[:2], np.uint8)
+    shifted = dst_points.astype(np.float32) - np.array([x0, y0], dtype=np.float32)
+    cv2.fillConvexPoly(mask, shifted.astype(np.int32), 1)
+    mask = cv2.dilate(mask, np.ones((5, 5), np.uint8))
+    sel = crop[mask > 0]
+    if sel.shape[0] < 16:
+        return detected_bg
+    return np.median(sel, axis=0)
 
 def render(
     img,
@@ -267,9 +293,12 @@ def render(
     dst_points,
     hyphenate,
     line_spacing,
-    disable_font_border
+    disable_font_border,
+    adaptive_bg_color=False
 ):
     fg, bg = region.get_font_colors()
+    if adaptive_bg_color:
+        bg = sample_background_color(img, dst_points, bg)
     fg, bg = fg_bg_compare(fg, bg)
 
     if disable_font_border :

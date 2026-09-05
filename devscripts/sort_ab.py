@@ -57,6 +57,9 @@ async def main():
             config.detector.detection_size = 1536
             config.inpainter.inpainting_size = 1536
             config.translator.translator = Translator.none
+            # 与 config.json 一致：默认 target_lang='ENG' 会把英文原文全部
+            # 过滤掉（source_lang == target_lang），导致排序对比无区域可排
+            config.translator.target_lang = 'CHS'
             mutate(config)
             t0 = time.perf_counter()
             await t.translate(img, config, skip_context_save=True)
