@@ -1,0 +1,298 @@
+[31m⚠️  Warning: You are using the experimental Python version of this project.[0m
+[33mThis version is unstable and may break frequently. Please switch to the Rust rewrite for reliability! The rust version is an early release so it might still have some issues. https://github.com/frederik-uni/manga-image-translator-rust[0m
+[local] Running in local mode
+[local] Log file created: F:\tools\manga-image-translator-main\manga-image-translator-main\result\log_20260906011803.txt
+[local] Batch processing started - batch size: 8, memory usage: 33.6%, available: 41892MB
+[local] Memory optimization enabled
+[local] Found 10 images to translate
+[local] Processing batch 1/2 (size: 8)
+[local] Memory status before batch: 33.6%, available: 41884MB
+[local] Starting batch translation for 8 images...
+[local] Starting batch translation: 8 images, batch size: 8
+[local] Starting pre-processing phase...
+[local] Pre-processing image 1/8
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+WARNING: [local] No text regions with text! - Skipping
+[local] Image 1 pre-processing successful
+[local] Pre-processing image 2/8
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+WARNING: [local] No text regions! - Skipping
+[local] Image 2 pre-processing successful
+[local] Pre-processing image 3/8
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+[Model48pxOCR] prob: 0.9591450691223145 Wake up, dickhead! fg: (230, 4, 6) bg: (17, 6, 10)
+[Model48pxOCR] prob: 0.5701420307159424 Yeah,the Boss Lady really took a shine to her. fg: (233, 3, 5) bg: (17, 3, 8)
+[Model48pxOCR] prob: 0.5704180002212524 earned a touch from the Mistress herse fg: (134, 131, 130) bg: (14, 11, 13)
+[local] No pre-translation replacements made.
+[local] Image 3 pre-processing successful
+[local] Pre-processing image 4/8
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+[Model48pxOCR] prob: 0.9906262159347534 *yawn* fg: (251, 104, 6) bg: (251, 104, 6)
+[Model48pxOCR] prob: 0.9004912376403809 Hello? Who's there?! fg: (252, 106, 5) bg: (15, 6, 4)
+[local] Removed unpaired bracket from "Hello? Who's there?!"
+[local] No pre-translation replacements made.
+[local] Image 4 pre-processing successful
+[local] Pre-processing image 5/8
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+[Model48pxOCR] prob: 0.3051012456417084 Am I going crazy fg: (251, 107, 5) bg: (0, 4, 5)
+[Model48pxOCR] prob: 0.8345168828964233 Greetings, Scarlett! fg: (225, 219, 217) bg: (1, 1, 6)
+[Model48pxOCR] prob: 0.8447110056877136 towatchoveryou! fg: (142, 139, 137) bg: (2, 2, 4)
+[Model48pxOCR] prob: 0.9821903705596924 No more than usual. fg: (231, 5, 6) bg: (42, 4, 5)
+[Model48pxOCR] prob: 0.2826468050479889 TheMistresshasleftus fg: (192, 191, 185) bg: (13, 10, 12)
+[local] No pre-translation replacements made.
+[local] Image 5 pre-processing successful
+[local] Pre-processing image 6/8
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+[Model48pxOCR] prob: 0.9578713774681091 darling! fg: (149, 143, 143) bg: (4, 3, 8)
+[Model48pxOCR] prob: 0.8998104333877563 Who are you, exactly? fg: (253, 101, 4) bg: (4, 4, 4)
+[Model48pxOCR] prob: 0.9724578261375427 Just don't expect us fg: (230, 3, 4) bg: (19, 4, 5)
+[Model48pxOCR] prob: 0.9707628488540649 to do your homework fg: (231, 6, 5) bg: (17, 3, 7)
+[Model48pxOCR] prob: 0.8718504905700684 be right here to help you, fg: (191, 189, 189) bg: (35, 33, 35)
+[Model48pxOCR] prob: 0.2820836305618286 From now on, we'll alwavs fg: (140, 143, 138) bg: (16, 15, 19)
+[local] Removed unpaired bracket from "From now on, we'll alwavs be right here to help you, darling!"
+[local] Removed unpaired bracket from "Just don't expect us to do your homework"
+[local] No pre-translation replacements made.
+[local] Image 6 pre-processing successful
+[local] Pre-processing image 7/8
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+[Model48pxOCR] prob: 0.9724351763725281 and sent us to back you u fg: (250, 18, 19) bg: (106, 60, 64)
+[Model48pxOCR] prob: 0.3759656846523285 toguideyou along your path! fg: (122, 123, 121) bg: (20, 21, 23)
+[Model48pxOCR] prob: 0.5520631670951843 night—the Boss was impressed fg: (251, 20, 18) bg: (91, 66, 69)
+[Model48pxOCR] prob: 0.9050229787826538 You and that big-titted slut put fg: (250, 18, 19) bg: (94, 63, 62)
+[Model48pxOCR] prob: 0.4439334273338318 on guite the sex marathon last fg: (253, 18, 19) bg: (100, 62, 65)
+[Model48pxOCR] prob: 0.8252474069595337 We've been sent by the Mistr fg: (171, 168, 165) bg: (12, 9, 12)
+[local] Removed unpaired bracket from "We've been sent by the Mistr toguideyou along your path!"
+[local] No pre-translation replacements made.
+[local] Image 7 pre-processing successful
+[local] Pre-processing image 8/8
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+[Model48pxOCR] prob: 0.2750563621520996 Iwonderwhatst she'dreaming. fg: (251, 104, 5) bg: (3, 4, 4)
+[Model48pxOCR] prob: 0.782122790813446 Damn... that's a lot to process. fg: (251, 101, 6) bg: (3, 3, 4)
+[local] Removed unpaired bracket from "Damn... that's a lot to process. Iwonderwhatst she'dreaming."
+[local] No pre-translation replacements made.
+[local] Image 8 pre-processing successful
+[local] Pre-processing completed: 8 images
+[local] Starting batch translation phase...
+[local] Using standard batch mode for translation
+[local] Processing translation batch 1/1
+[local] Running text translation
+[CustomOpenAiTranslator] Translating into Chinese (Simplified)
+[CustomOpenAiTranslator] Temperature: 0.3, TopP: 0.9
+[CustomOpenAiTranslator] -- GPT Prompt --
+System:
+你是一个专业的漫画翻译引擎。请将用户提供的文本翻译成地道、流畅、口语化的简体中文。 你必须逐行翻译，保持原文的语气和情感。 如果原文已经是中文或是无意义的乱码，请原样输出。 只输出翻译结果，不要添加任何解释、注释或额外内容。
+
+User:
+<|1|>恥ずかしい… 目立ちたくない… 私が消えたい…
+<|2|>きみ… 大丈夫⁉
+<|3|>なんだこいつ 空気読めて ないのか…？
+Assistant:
+<|1|>好尴尬…我不想引人注目…我想消失…
+<|2|>你…没事吧⁉
+<|3|>这家伙怎么看不懂气氛的…？
+User:
+<|1|>earned a touch from the Mistress herse
+<|2|>Yeah,the Boss Lady really took a shine to her. Wake up, dickhead!
+<|3|>*yawn*
+<|4|>Hello? Whos there?!
+<|5|>Greetings, Scarlett! TheMistresshasleftus towatchoveryou!
+<|6|>Am I going crazy
+<|7|>No more than usual.
+<|8|>From now on, well alwavs be right here to help you, darling!
+<|9|>Just dont expect us to do your homework
+<|10|>Who are you, exactly?
+<|11|>Weve been sent by the Mistr toguideyou along your path!
+<|12|>You and that big-titted slut put on guite the sex marathon last night—the Boss was impressed and sent us to back you u
+<|13|>Damn... thats a lot to process. Iwonderwhatst shedreaming.
+[CustomOpenAiTranslator] 
+-- GPT Response (raw) --
+[CustomOpenAiTranslator] <|1|>从女主人那里得到了好处
+<|2|>是啊，女老板真的对她很满意。醒醒吧，笨蛋！
+<|3|>*哈欠*
+<|4|>喂？谁啊？
+<|5|>你好，斯嘉丽！女主人派我们来照看你呢！
+<|6|>我疯了吗
+<|7|>和平时没什么两样。
+<|8|>从现在开始，我们随时都在这里帮助你，亲爱的！
+<|9|>别指望我们帮你做作业
+<|10|>你到底是谁？
+<|11|>我们被女主人派来引导你的道路！
+<|12|>那个大胸的贱人昨晚搞了场糟糕的性爱马拉松——女主印象深刻，就派我们来支持你！
+<|13|>该死...这太难以接受了。我在想她在做什么梦呢。
+[CustomOpenAiTranslator] ------------------------
+
+[CustomOpenAiTranslator] ['从女主人那里得到了好处', '是啊，女老板真的对她很满意。醒醒吧，笨蛋！', '*哈欠*', '喂？谁啊？', '你好，斯嘉丽！女主人派我们来照看你呢！', '我疯了吗', '和平时没什么两样。', '从现在开始，我们随时都在这里帮助你，亲爱的！', '别指望我们帮你做作业', '你到底是谁？', '我们被女主人派来引导你的道路！', '那个大胸的贱人昨晚搞了场糟糕的性爱马拉松——女主印象深刻，就派我们来支持你！', '该死...这太难以接受了。我在想她在做什么梦呢。']
+[CustomOpenAiTranslator] Used 538 tokens (Total: 538)
+[CustomOpenAiTranslator] 0: earned a touch from the Mistress herse => 从女主人那里得到了好处
+[CustomOpenAiTranslator] 1: Yeah,the Boss Lady really took a shine to her. Wake up, dickhead! => 是啊，女老板真的对她很满意。醒醒吧，笨蛋！
+[CustomOpenAiTranslator] 2: *yawn* => *哈欠*
+[CustomOpenAiTranslator] 3: Hello? Whos there?! => 喂？谁啊？
+[CustomOpenAiTranslator] 4: Greetings, Scarlett! TheMistresshasleftus towatchoveryou! => 你好，斯嘉丽！女主人派我们来照看你呢！
+[CustomOpenAiTranslator] 5: Am I going crazy => 我疯了吗
+[CustomOpenAiTranslator] 6: No more than usual. => 和平时没什么两样。
+[CustomOpenAiTranslator] 7: From now on, well alwavs be right here to help you, darling! => 从现在开始，我们随时都在这里帮助你，亲爱的！
+[CustomOpenAiTranslator] 8: Just dont expect us to do your homework => 别指望我们帮你做作业
+[CustomOpenAiTranslator] 9: Who are you, exactly? => 你到底是谁？
+[CustomOpenAiTranslator] 10: Weve been sent by the Mistr toguideyou along your path! => 我们被女主人派来引导你的道路！
+[CustomOpenAiTranslator] 11: You and that big-titted slut put on guite the sex marathon last night—the Boss was impressed and sent us to back you u => 那个大胸的贱人昨晚搞了场糟糕的性爱马拉松——女主印象深刻，就派我们来支持你！
+[CustomOpenAiTranslator] 12: Damn... thats a lot to process. Iwonderwhatst shedreaming. => 该死...这太难以接受了。我在想她在做什么梦呢。
+[local] No post-translation replacements made.
+[local] Starting post-translation check...
+[local] No post-translation replacements made.
+[local] Starting post-translation check...
+[local] No post-translation replacements made.
+[local] Starting post-translation check...
+[local] No post-translation replacements made.
+[local] Starting post-translation check...
+[local] No post-translation replacements made.
+[local] Starting post-translation check...
+[local] No post-translation replacements made.
+[local] Starting post-translation check...
+[local] Starting batch-level target language check with 13 regions...
+[local] All translation regions passed post-translation check.
+[local] Starting post-processing phase...
+[local] Image 1 post-processing completed
+[local] Image 2 post-processing completed
+[local] Running mask refinement
+[mask]:   0%|          | 0/3 [00:00<?, ?it/s][mask]: 100%|██████████| 3/3 [00:00<00:00, 84.90it/s]
+[LamaLargeInpainter] Inpainting resolution: 1536x864
+[local] Running rendering
+[render]:   0%|          | 0/2 [00:00<?, ?it/s][render]:  50%|█████     | 1/2 [00:00<00:00,  8.57it/s][render]: 100%|██████████| 2/2 [00:00<00:00, 15.18it/s]
+[local] Image 3 post-processing completed
+[local] Running mask refinement
+[mask]:   0%|          | 0/2 [00:00<?, ?it/s][mask]: 100%|██████████| 2/2 [00:00<00:00, 221.63it/s]
+[LamaLargeInpainter] Inpainting resolution: 1536x864
+[local] Running rendering
+[render]:   0%|          | 0/2 [00:00<?, ?it/s][render]: 100%|██████████| 2/2 [00:00<00:00, 305.34it/s]
+[local] Image 4 post-processing completed
+[local] Running mask refinement
+[mask]:   0%|          | 0/5 [00:00<?, ?it/s][mask]: 100%|██████████| 5/5 [00:00<00:00, 174.83it/s]
+[LamaLargeInpainter] Inpainting resolution: 1536x864
+[local] Running rendering
+[render]:   0%|          | 0/3 [00:00<?, ?it/s][render]: 100%|██████████| 3/3 [00:00<00:00, 92.74it/s]
+[local] Image 5 post-processing completed
+[local] Running mask refinement
+[mask]:   0%|          | 0/6 [00:00<?, ?it/s][mask]: 100%|██████████| 6/6 [00:00<00:00, 146.95it/s]
+[LamaLargeInpainter] Inpainting resolution: 1536x864
+[local] Running rendering
+[render]:   0%|          | 0/3 [00:00<?, ?it/s][render]: 100%|██████████| 3/3 [00:00<00:00, 117.03it/s]
+[local] Image 6 post-processing completed
+[local] Running mask refinement
+[mask]:   0%|          | 0/6 [00:00<?, ?it/s][mask]: 100%|██████████| 6/6 [00:00<00:00, 95.74it/s]
+[LamaLargeInpainter] Inpainting resolution: 1536x864
+[local] Running rendering
+[render]:   0%|          | 0/2 [00:00<?, ?it/s][render]: 100%|██████████| 2/2 [00:00<00:00, 59.25it/s]
+[local] Image 7 post-processing completed
+[local] Running mask refinement
+[mask]:   0%|          | 0/2 [00:00<?, ?it/s][mask]: 100%|██████████| 2/2 [00:00<00:00, 79.34it/s]
+[LamaLargeInpainter] Inpainting resolution: 1536x864
+[local] Running rendering
+[render]:   0%|          | 0/1 [00:00<?, ?it/s][render]: 100%|██████████| 1/1 [00:00<00:00, 62.09it/s]
+[local] Image 8 post-processing completed
+[local] Batch translation completed: processed 8 images
+[local] Saving translation result: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v4\001.jpg"
+[local] Saving translation result: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v4\002.jpg"
+[local] Saving translation result: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v4\003.jpg"
+[local] Saving translation result: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v4\004.jpg"
+[local] Saving translation result: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v4\005.jpg"
+[local] Saving translation result: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v4\006.jpg"
+[local] Saving translation result: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v4\007.jpg"
+[local] Saving translation result: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v4\008.jpg"
+[local] Batch 1 processed successfully
+[local] Performing force memory cleanup...
+[local] Memory status after batch 1: 36.8%, available: 39884MB
+[local] Processing batch 2/2 (size: 2)
+[local] Memory status before batch: 36.8%, available: 39884MB
+[local] Starting batch translation for 2 images...
+[local] Starting batch translation: 2 images, batch size: 2
+[local] Starting pre-processing phase...
+[local] Pre-processing image 1/2
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+WARNING: [local] No text regions! - Skipping
+[local] Image 1 pre-processing successful
+[local] Pre-processing image 2/2
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+[Model48pxOCR] prob: 0.9710615873336792 Goddess... fg: (1, 227, 254) bg: (1, 227, 254)
+[local] No pre-translation replacements made.
+[local] Image 2 pre-processing successful
+[local] Pre-processing completed: 2 images
+[local] Starting batch translation phase...
+[local] Using standard batch mode for translation
+[local] Processing translation batch 1/1
+[local] Running text translation
+[CustomOpenAiTranslator] Translating into Chinese (Simplified)
+[CustomOpenAiTranslator] Temperature: 0.3, TopP: 0.9
+[CustomOpenAiTranslator] -- GPT Prompt --
+System:
+你是一个专业的漫画翻译引擎。请将用户提供的文本翻译成地道、流畅、口语化的简体中文。 你必须逐行翻译，保持原文的语气和情感。 如果原文已经是中文或是无意义的乱码，请原样输出。 只输出翻译结果，不要添加任何解释、注释或额外内容。
+
+User:
+<|1|>恥ずかしい… 目立ちたくない… 私が消えたい…
+<|2|>きみ… 大丈夫⁉
+<|3|>なんだこいつ 空気読めて ないのか…？
+Assistant:
+<|1|>好尴尬…我不想引人注目…我想消失…
+<|2|>你…没事吧⁉
+<|3|>这家伙怎么看不懂气氛的…？
+User:
+<|1|>Goddess...
+[CustomOpenAiTranslator] 
+-- GPT Response (raw) --
+[CustomOpenAiTranslator] <|2|>女神...
+[CustomOpenAiTranslator] ------------------------
+
+[CustomOpenAiTranslator] ['女神...']
+[CustomOpenAiTranslator] Used 174 tokens (Total: 712)
+[CustomOpenAiTranslator] 0: Goddess... => 女神...
+[local] No post-translation replacements made.
+[local] Starting post-translation check...
+[local] Skipping batch-level target language check: only 1 regions (threshold: 10)
+[local] All translation regions passed post-translation check.
+[local] Starting post-processing phase...
+[local] Image 1 post-processing completed
+[local] Running mask refinement
+[mask]:   0%|          | 0/1 [00:00<?, ?it/s][mask]: 100%|██████████| 1/1 [00:00<00:00, 398.55it/s]
+[LamaLargeInpainter] Inpainting resolution: 1536x864
+[local] Running rendering
+[render]:   0%|          | 0/1 [00:00<?, ?it/s][render]: 100%|██████████| 1/1 [00:00<00:00, 500.27it/s]
+[local] Image 2 post-processing completed
+[local] Batch translation completed: processed 2 images
+[local] Saving translation result: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v4\009.jpg"
+[local] Saving translation result: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v4\010.jpg"
+[local] Batch 2 processed successfully
+[local] Performing force memory cleanup...
+[local] Memory status after batch 2: 36.5%, available: 40079MB
+[local] Done! Translated 10 images in 28.6 seconds
+[local] Results saved to: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v4"
+
+real	0m42.728s
+user	0m0.016s
+sys	0m0.016s

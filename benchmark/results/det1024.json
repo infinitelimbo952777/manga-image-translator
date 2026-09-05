@@ -1,0 +1,206 @@
+{
+  "meta": {
+    "label": "det1024",
+    "python": "3.11.9",
+    "torch": "2.12.1+cu132",
+    "cuda": "13.2",
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "device": "cuda",
+    "translator": "custom_openai",
+    "detector": "Detector.default",
+    "detection_size": 1024,
+    "ocr": "Ocr.ocr48px",
+    "inpainter": "Inpainter.lama_large",
+    "inpainting_size": 2048,
+    "inpainting_precision": "bf16",
+    "disable_memory_optimization": false,
+    "n_images": 5,
+    "warmup_rounds": 1,
+    "timed_rounds": 1
+  },
+  "runs": [
+    {
+      "round": 0,
+      "image": "page01.png",
+      "total_s": 5.4371,
+      "warmup": true
+    },
+    {
+      "round": 0,
+      "image": "page02.png",
+      "total_s": 3.2366,
+      "warmup": true
+    },
+    {
+      "round": 0,
+      "image": "page03.png",
+      "total_s": 2.849,
+      "warmup": true
+    },
+    {
+      "round": 0,
+      "image": "page04.png",
+      "total_s": 3.0449,
+      "warmup": true
+    },
+    {
+      "round": 0,
+      "image": "page05.png",
+      "total_s": 2.6208,
+      "warmup": true
+    },
+    {
+      "round": 1,
+      "image": "page01.png",
+      "total_s": 1.3657,
+      "warmup": false
+    },
+    {
+      "round": 1,
+      "image": "page02.png",
+      "total_s": 2.3566,
+      "warmup": false
+    },
+    {
+      "round": 1,
+      "image": "page03.png",
+      "total_s": 2.1505,
+      "warmup": false
+    },
+    {
+      "round": 1,
+      "image": "page04.png",
+      "total_s": 2.4104,
+      "warmup": false
+    },
+    {
+      "round": 1,
+      "image": "page05.png",
+      "total_s": 1.9739,
+      "warmup": false
+    }
+  ],
+  "summary": {
+    "stages": {
+      "detection": {
+        "per_image_mean_s": 0.1163,
+        "per_image_median_s": 0.1126,
+        "share_pct": 5.8
+      },
+      "ocr": {
+        "per_image_mean_s": 0.6517,
+        "per_image_median_s": 0.7058,
+        "share_pct": 32.7
+      },
+      "textline_merge": {
+        "per_image_mean_s": 0.4635,
+        "per_image_median_s": 0.4683,
+        "share_pct": 23.3
+      },
+      "translation": {
+        "per_image_mean_s": 0.2991,
+        "per_image_median_s": 0.2763,
+        "share_pct": 15.0
+      },
+      "mask_refinement": {
+        "per_image_mean_s": 0.0689,
+        "per_image_median_s": 0.0698,
+        "share_pct": 3.5
+      },
+      "inpainting": {
+        "per_image_mean_s": 0.3534,
+        "per_image_median_s": 0.3346,
+        "share_pct": 17.7
+      },
+      "rendering": {
+        "per_image_mean_s": 0.0389,
+        "per_image_median_s": 0.0231,
+        "share_pct": 2.0
+      }
+    },
+    "stages_sum_per_image_s": 1.9918,
+    "per_image_mean_s": 2.0514,
+    "per_round_total_mean_s": 10.257,
+    "images_per_sec": 0.487
+  },
+  "raw_stage_samples": {
+    "detection": [
+      0.9371,
+      0.1197,
+      0.1143,
+      0.1108,
+      0.1135,
+      0.1126,
+      0.1086,
+      0.123,
+      0.1121,
+      0.1252
+    ],
+    "ocr": [
+      1.3051,
+      1.278,
+      1.293,
+      1.3708,
+      1.1371,
+      0.3577,
+      0.7512,
+      0.7058,
+      0.8166,
+      0.6272
+    ],
+    "textline_merge": [
+      0.5402,
+      0.3459,
+      0.4756,
+      0.5103,
+      0.464,
+      0.5173,
+      0.3654,
+      0.4589,
+      0.5076,
+      0.4683
+    ],
+    "translation": [
+      1.0464,
+      0.5113,
+      0.3052,
+      0.4013,
+      0.2748,
+      0.198,
+      0.5021,
+      0.2763,
+      0.3177,
+      0.2012
+    ],
+    "mask_refinement": [
+      0.0792,
+      0.0641,
+      0.0805,
+      0.0529,
+      0.0807,
+      0.0598,
+      0.0755,
+      0.0581
+    ],
+    "inpainting": [
+      0.5257,
+      0.3536,
+      0.3299,
+      0.3725,
+      0.3059,
+      0.2959,
+      0.3393,
+      0.3044
+    ],
+    "rendering": [
+      0.1595,
+      0.0188,
+      0.0309,
+      0.0202,
+      0.028,
+      0.0149,
+      0.0259,
+      0.0128
+    ]
+  }
+}

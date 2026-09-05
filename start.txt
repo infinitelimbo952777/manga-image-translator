@@ -1,0 +1,1 @@
+python -m manga_translator local -v -i "F:\jian\picture\[Serge3DX] Milf Breeder Chapter 6 (Comic)" --config-file ./config.json  --use-gpu -v

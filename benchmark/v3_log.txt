@@ -1,0 +1,367 @@
+[31m⚠️  Warning: You are using the experimental Python version of this project.[0m
+[33mThis version is unstable and may break frequently. Please switch to the Rust rewrite for reliability! The rust version is an early release so it might still have some issues. https://github.com/frederik-uni/manga-image-translator-rust[0m
+[local] Running in local mode
+[local] Log file created: F:\tools\manga-image-translator-main\manga-image-translator-main\result\log_20260906011705.txt
+[local] Translating: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\real_input\001.jpg"
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+WARNING: [local] No text regions with text! - Skipping
+[local] Saving "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v3\001.jpg"
+[local] Translating: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\real_input\002.jpg"
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+WARNING: [local] No text regions! - Skipping
+[local] Saving "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v3\002.jpg"
+[local] Translating: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\real_input\003.jpg"
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+[Model48pxOCR] prob: 0.9591450691223145 Wake up, dickhead! fg: (230, 4, 6) bg: (17, 6, 10)
+[Model48pxOCR] prob: 0.5701420307159424 Yeah,the Boss Lady really took a shine to her. fg: (233, 3, 5) bg: (17, 3, 8)
+[Model48pxOCR] prob: 0.5704180002212524 earned a touch from the Mistress herse fg: (134, 131, 130) bg: (14, 11, 13)
+[local] No pre-translation replacements made.
+[local] Running text translation
+[CustomOpenAiTranslator] Translating into Chinese (Simplified)
+[CustomOpenAiTranslator] Temperature: 0.3, TopP: 0.9
+[CustomOpenAiTranslator] -- GPT Prompt --
+System:
+你是一个专业的漫画翻译引擎。请将用户提供的文本翻译成地道、流畅、口语化的简体中文。 你必须逐行翻译，保持原文的语气和情感。 如果原文已经是中文或是无意义的乱码，请原样输出。 只输出翻译结果，不要添加任何解释、注释或额外内容。
+
+User:
+<|1|>恥ずかしい… 目立ちたくない… 私が消えたい…
+<|2|>きみ… 大丈夫⁉
+<|3|>なんだこいつ 空気読めて ないのか…？
+Assistant:
+<|1|>好尴尬…我不想引人注目…我想消失…
+<|2|>你…没事吧⁉
+<|3|>这家伙怎么看不懂气氛的…？
+User:
+<|1|>earned a touch from the Mistress herse
+<|2|>Yeah,the Boss Lady really took a shine to her. Wake up, dickhead!
+[CustomOpenAiTranslator] 
+-- GPT Response (raw) --
+[CustomOpenAiTranslator] <|1|>从女上司那里得到了一些好处
+<|2|>是的，老板娘真的对她很满意。醒醒吧，笨蛋！
+[CustomOpenAiTranslator] ------------------------
+
+[CustomOpenAiTranslator] ['从女上司那里得到了一些好处', '是的，老板娘真的对她很满意。醒醒吧，笨蛋！']
+[CustomOpenAiTranslator] Used 227 tokens (Total: 227)
+[CustomOpenAiTranslator] 0: earned a touch from the Mistress herse => 从女上司那里得到了一些好处
+[CustomOpenAiTranslator] 1: Yeah,the Boss Lady really took a shine to her. Wake up, dickhead! => 是的，老板娘真的对她很满意。醒醒吧，笨蛋！
+[local] No post-translation replacements made.
+[local] Starting post-translation check...
+[local] Skipping page-level target language check: only 2 regions (threshold: 5)
+[local] All translation regions passed post-translation check.
+[local] Running mask refinement
+[mask]:   0%|          | 0/3 [00:00<?, ?it/s][mask]: 100%|██████████| 3/3 [00:00<00:00, 64.12it/s]
+[LamaLargeInpainter] Inpainting resolution: 1536x864
+[local] Running rendering
+[render]:   0%|          | 0/2 [00:00<?, ?it/s][render]:  50%|█████     | 1/2 [00:00<00:00,  8.50it/s][render]: 100%|██████████| 2/2 [00:00<00:00, 14.73it/s]
+[local] Saving "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v3\003.jpg"
+[local] Translating: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\real_input\004.jpg"
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+[Model48pxOCR] prob: 0.9906262159347534 *yawn* fg: (251, 104, 6) bg: (251, 104, 6)
+[Model48pxOCR] prob: 0.9004912376403809 Hello? Who's there?! fg: (252, 106, 5) bg: (15, 6, 4)
+[local] Removed unpaired bracket from "Hello? Who's there?!"
+[local] No pre-translation replacements made.
+[local] Running text translation
+[CustomOpenAiTranslator] Translating into Chinese (Simplified)
+[CustomOpenAiTranslator] Temperature: 0.3, TopP: 0.9
+[CustomOpenAiTranslator] -- GPT Prompt --
+System:
+你是一个专业的漫画翻译引擎。请将用户提供的文本翻译成地道、流畅、口语化的简体中文。 你必须逐行翻译，保持原文的语气和情感。 如果原文已经是中文或是无意义的乱码，请原样输出。 只输出翻译结果，不要添加任何解释、注释或额外内容。
+
+User:
+<|1|>恥ずかしい… 目立ちたくない… 私が消えたい…
+<|2|>きみ… 大丈夫⁉
+<|3|>なんだこいつ 空気読めて ないのか…？
+Assistant:
+<|1|>好尴尬…我不想引人注目…我想消失…
+<|2|>你…没事吧⁉
+<|3|>这家伙怎么看不懂气氛的…？
+User:
+<|1|>*yawn*
+<|2|>Hello? Whos there?!
+[CustomOpenAiTranslator] 
+-- GPT Response (raw) --
+[CustomOpenAiTranslator] <|1|>*嗤笑*
+<|2|>你好？谁啊？！
+[CustomOpenAiTranslator] ------------------------
+
+[CustomOpenAiTranslator] ['*嗤笑*', '你好？谁啊？！']
+[CustomOpenAiTranslator] Used 195 tokens (Total: 422)
+[CustomOpenAiTranslator] 0: *yawn* => *嗤笑*
+[CustomOpenAiTranslator] 1: Hello? Whos there?! => 你好？谁啊？！
+[local] No post-translation replacements made.
+[local] Starting post-translation check...
+[local] Skipping page-level target language check: only 2 regions (threshold: 5)
+[local] All translation regions passed post-translation check.
+[local] Running mask refinement
+[mask]:   0%|          | 0/2 [00:00<?, ?it/s][mask]: 100%|██████████| 2/2 [00:00<00:00, 189.79it/s]
+[LamaLargeInpainter] Inpainting resolution: 1536x864
+[local] Running rendering
+[render]:   0%|          | 0/2 [00:00<?, ?it/s][render]: 100%|██████████| 2/2 [00:00<00:00, 221.72it/s]
+[local] Saving "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v3\004.jpg"
+[local] Translating: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\real_input\005.jpg"
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+[Model48pxOCR] prob: 0.3051012456417084 Am I going crazy fg: (251, 107, 5) bg: (0, 4, 5)
+[Model48pxOCR] prob: 0.8345168828964233 Greetings, Scarlett! fg: (225, 219, 217) bg: (1, 1, 6)
+[Model48pxOCR] prob: 0.8447110056877136 towatchoveryou! fg: (142, 139, 137) bg: (2, 2, 4)
+[Model48pxOCR] prob: 0.9821903705596924 No more than usual. fg: (231, 5, 6) bg: (42, 4, 5)
+[Model48pxOCR] prob: 0.2826468050479889 TheMistresshasleftus fg: (192, 191, 185) bg: (13, 10, 12)
+[local] No pre-translation replacements made.
+[local] Running text translation
+[CustomOpenAiTranslator] Translating into Chinese (Simplified)
+[CustomOpenAiTranslator] Temperature: 0.3, TopP: 0.9
+[CustomOpenAiTranslator] -- GPT Prompt --
+System:
+你是一个专业的漫画翻译引擎。请将用户提供的文本翻译成地道、流畅、口语化的简体中文。 你必须逐行翻译，保持原文的语气和情感。 如果原文已经是中文或是无意义的乱码，请原样输出。 只输出翻译结果，不要添加任何解释、注释或额外内容。
+
+User:
+<|1|>恥ずかしい… 目立ちたくない… 私が消えたい…
+<|2|>きみ… 大丈夫⁉
+<|3|>なんだこいつ 空気読めて ないのか…？
+Assistant:
+<|1|>好尴尬…我不想引人注目…我想消失…
+<|2|>你…没事吧⁉
+<|3|>这家伙怎么看不懂气氛的…？
+User:
+<|1|>Greetings, Scarlett! TheMistresshasleftus towatchoveryou!
+<|2|>Am I going crazy
+<|3|>No more than usual.
+[CustomOpenAiTranslator] 
+-- GPT Response (raw) --
+[CustomOpenAiTranslator] <|1|>问候，斯嘉丽！女主人离开我们了，来照顾你！
+<|2|>我疯了吗？
+<|3|>和往常一样。
+[CustomOpenAiTranslator] ------------------------
+
+[CustomOpenAiTranslator] ['问候，斯嘉丽！女主人离开我们了，来照顾你！', '我疯了吗？', '和往常一样。']
+[CustomOpenAiTranslator] Used 235 tokens (Total: 657)
+[CustomOpenAiTranslator] 0: Greetings, Scarlett! TheMistresshasleftus towatchoveryou! => 问候，斯嘉丽！女主人离开我们了，来照顾你！
+[CustomOpenAiTranslator] 1: Am I going crazy => 我疯了吗？
+[CustomOpenAiTranslator] 2: No more than usual. => 和往常一样。
+[local] No post-translation replacements made.
+[local] Starting post-translation check...
+[local] Skipping page-level target language check: only 3 regions (threshold: 5)
+[local] All translation regions passed post-translation check.
+[local] Running mask refinement
+[mask]:   0%|          | 0/5 [00:00<?, ?it/s][mask]: 100%|██████████| 5/5 [00:00<00:00, 141.97it/s]
+[LamaLargeInpainter] Inpainting resolution: 1536x864
+[local] Running rendering
+[render]:   0%|          | 0/3 [00:00<?, ?it/s][render]: 100%|██████████| 3/3 [00:00<00:00, 159.35it/s]
+[local] Saving "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v3\005.jpg"
+[local] Translating: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\real_input\006.jpg"
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+[Model48pxOCR] prob: 0.9578713774681091 darling! fg: (149, 143, 143) bg: (4, 3, 8)
+[Model48pxOCR] prob: 0.8998104333877563 Who are you, exactly? fg: (253, 101, 4) bg: (4, 4, 4)
+[Model48pxOCR] prob: 0.9724578261375427 Just don't expect us fg: (230, 3, 4) bg: (19, 4, 5)
+[Model48pxOCR] prob: 0.9707628488540649 to do your homework fg: (231, 6, 5) bg: (17, 3, 7)
+[Model48pxOCR] prob: 0.8718504905700684 be right here to help you, fg: (191, 189, 189) bg: (35, 33, 35)
+[Model48pxOCR] prob: 0.2820836305618286 From now on, we'll alwavs fg: (140, 143, 138) bg: (16, 15, 19)
+[local] Removed unpaired bracket from "From now on, we'll alwavs be right here to help you, darling!"
+[local] Removed unpaired bracket from "Just don't expect us to do your homework"
+[local] No pre-translation replacements made.
+[local] Running text translation
+[CustomOpenAiTranslator] Translating into Chinese (Simplified)
+[CustomOpenAiTranslator] Temperature: 0.3, TopP: 0.9
+[CustomOpenAiTranslator] -- GPT Prompt --
+System:
+你是一个专业的漫画翻译引擎。请将用户提供的文本翻译成地道、流畅、口语化的简体中文。 你必须逐行翻译，保持原文的语气和情感。 如果原文已经是中文或是无意义的乱码，请原样输出。 只输出翻译结果，不要添加任何解释、注释或额外内容。
+
+User:
+<|1|>恥ずかしい… 目立ちたくない… 私が消えたい…
+<|2|>きみ… 大丈夫⁉
+<|3|>なんだこいつ 空気読めて ないのか…？
+Assistant:
+<|1|>好尴尬…我不想引人注目…我想消失…
+<|2|>你…没事吧⁉
+<|3|>这家伙怎么看不懂气氛的…？
+User:
+<|1|>From now on, well alwavs be right here to help you, darling!
+<|2|>Just dont expect us to do your homework
+<|3|>Who are you, exactly?
+[CustomOpenAiTranslator] 
+-- GPT Response (raw) --
+[CustomOpenAiTranslator] <|1|>从现在开始，我会一直在这里帮助你，亲爱的！
+<|2|>别指望我们帮你做作业。
+<|3|>你到底是谁？
+[CustomOpenAiTranslator] ------------------------
+
+[CustomOpenAiTranslator] ['从现在开始，我会一直在这里帮助你，亲爱的！', '别指望我们帮你做作业。', '你到底是谁？']
+[CustomOpenAiTranslator] Used 237 tokens (Total: 894)
+[CustomOpenAiTranslator] 0: From now on, well alwavs be right here to help you, darling! => 从现在开始，我会一直在这里帮助你，亲爱的！
+[CustomOpenAiTranslator] 1: Just dont expect us to do your homework => 别指望我们帮你做作业。
+[CustomOpenAiTranslator] 2: Who are you, exactly? => 你到底是谁？
+[local] No post-translation replacements made.
+[local] Starting post-translation check...
+[local] Skipping page-level target language check: only 3 regions (threshold: 5)
+[local] All translation regions passed post-translation check.
+[local] Running mask refinement
+[mask]:   0%|          | 0/6 [00:00<?, ?it/s][mask]: 100%|██████████| 6/6 [00:00<00:00, 121.00it/s]
+[LamaLargeInpainter] Inpainting resolution: 1536x864
+[local] Running rendering
+[render]:   0%|          | 0/3 [00:00<?, ?it/s][render]: 100%|██████████| 3/3 [00:00<00:00, 116.27it/s]
+[local] Saving "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v3\006.jpg"
+[local] Translating: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\real_input\007.jpg"
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+[Model48pxOCR] prob: 0.9724351763725281 and sent us to back you u fg: (250, 18, 19) bg: (106, 60, 64)
+[Model48pxOCR] prob: 0.3759656846523285 toguideyou along your path! fg: (122, 123, 121) bg: (20, 21, 23)
+[Model48pxOCR] prob: 0.5520631670951843 night—the Boss was impressed fg: (251, 20, 18) bg: (91, 66, 69)
+[Model48pxOCR] prob: 0.9050229787826538 You and that big-titted slut put fg: (250, 18, 19) bg: (94, 63, 62)
+[Model48pxOCR] prob: 0.4439334273338318 on guite the sex marathon last fg: (253, 18, 19) bg: (100, 62, 65)
+[Model48pxOCR] prob: 0.8252474069595337 We've been sent by the Mistr fg: (171, 168, 165) bg: (12, 9, 12)
+[local] Removed unpaired bracket from "We've been sent by the Mistr toguideyou along your path!"
+[local] No pre-translation replacements made.
+[local] Running text translation
+[CustomOpenAiTranslator] Translating into Chinese (Simplified)
+[CustomOpenAiTranslator] Temperature: 0.3, TopP: 0.9
+[CustomOpenAiTranslator] -- GPT Prompt --
+System:
+你是一个专业的漫画翻译引擎。请将用户提供的文本翻译成地道、流畅、口语化的简体中文。 你必须逐行翻译，保持原文的语气和情感。 如果原文已经是中文或是无意义的乱码，请原样输出。 只输出翻译结果，不要添加任何解释、注释或额外内容。
+
+User:
+<|1|>恥ずかしい… 目立ちたくない… 私が消えたい…
+<|2|>きみ… 大丈夫⁉
+<|3|>なんだこいつ 空気読めて ないのか…？
+Assistant:
+<|1|>好尴尬…我不想引人注目…我想消失…
+<|2|>你…没事吧⁉
+<|3|>这家伙怎么看不懂气氛的…？
+User:
+<|1|>Weve been sent by the Mistr toguideyou along your path!
+<|2|>You and that big-titted slut put on guite the sex marathon last night—the Boss was impressed and sent us to back you u
+[CustomOpenAiTranslator] 
+-- GPT Response (raw) --
+[CustomOpenAiTranslator] <|1|>我们被大师派来引导你前进的道路！
+<|2|>你和那个大胸妹昨晚参加了那场性爱马拉松——老板很满意，于是派我们来支持你！
+[CustomOpenAiTranslator] ------------------------
+
+[CustomOpenAiTranslator] ['我们被大师派来引导你前进的道路！', '你和那个大胸妹昨晚参加了那场性爱马拉松——老板很满意，于是派我们来支持你！']
+[CustomOpenAiTranslator] Used 252 tokens (Total: 1146)
+[CustomOpenAiTranslator] 0: Weve been sent by the Mistr toguideyou along your path! => 我们被大师派来引导你前进的道路！
+[CustomOpenAiTranslator] 1: You and that big-titted slut put on guite the sex marathon last night—the Boss was impressed and sent us to back you u => 你和那个大胸妹昨晚参加了那场性爱马拉松——老板很满意，于是派我们来支持你！
+[local] No post-translation replacements made.
+[local] Starting post-translation check...
+[local] Skipping page-level target language check: only 2 regions (threshold: 5)
+[local] All translation regions passed post-translation check.
+[local] Running mask refinement
+[mask]:   0%|          | 0/6 [00:00<?, ?it/s][mask]: 100%|██████████| 6/6 [00:00<00:00, 89.55it/s]
+[LamaLargeInpainter] Inpainting resolution: 1536x864
+[local] Running rendering
+[render]:   0%|          | 0/2 [00:00<?, ?it/s][render]: 100%|██████████| 2/2 [00:00<00:00, 54.34it/s]
+[local] Saving "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v3\007.jpg"
+[local] Translating: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\real_input\008.jpg"
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+[Model48pxOCR] prob: 0.2750563621520996 Iwonderwhatst she'dreaming. fg: (251, 104, 5) bg: (3, 4, 4)
+[Model48pxOCR] prob: 0.782122790813446 Damn... that's a lot to process. fg: (251, 101, 6) bg: (3, 3, 4)
+[local] Removed unpaired bracket from "Damn... that's a lot to process. Iwonderwhatst she'dreaming."
+[local] No pre-translation replacements made.
+[local] Running text translation
+[CustomOpenAiTranslator] Translating into Chinese (Simplified)
+[CustomOpenAiTranslator] Temperature: 0.3, TopP: 0.9
+[CustomOpenAiTranslator] -- GPT Prompt --
+System:
+你是一个专业的漫画翻译引擎。请将用户提供的文本翻译成地道、流畅、口语化的简体中文。 你必须逐行翻译，保持原文的语气和情感。 如果原文已经是中文或是无意义的乱码，请原样输出。 只输出翻译结果，不要添加任何解释、注释或额外内容。
+
+User:
+<|1|>恥ずかしい… 目立ちたくない… 私が消えたい…
+<|2|>きみ… 大丈夫⁉
+<|3|>なんだこいつ 空気読めて ないのか…？
+Assistant:
+<|1|>好尴尬…我不想引人注目…我想消失…
+<|2|>你…没事吧⁉
+<|3|>这家伙怎么看不懂气氛的…？
+User:
+<|1|>Damn... thats a lot to process. Iwonderwhatst shedreaming.
+[CustomOpenAiTranslator] 
+-- GPT Response (raw) --
+[CustomOpenAiTranslator] <|1|>该死...这太难处理了。我不知道自己在想什么。
+[CustomOpenAiTranslator] ------------------------
+
+[CustomOpenAiTranslator] ['该死...这太难处理了。我不知道自己在想什么。']
+[CustomOpenAiTranslator] Used 199 tokens (Total: 1345)
+[CustomOpenAiTranslator] 0: Damn... thats a lot to process. Iwonderwhatst shedreaming. => 该死...这太难处理了。我不知道自己在想什么。
+[local] No post-translation replacements made.
+[local] Starting post-translation check...
+[local] Skipping page-level target language check: only 1 regions (threshold: 5)
+[local] All translation regions passed post-translation check.
+[local] Running mask refinement
+[mask]:   0%|          | 0/2 [00:00<?, ?it/s][mask]: 100%|██████████| 2/2 [00:00<00:00, 93.48it/s]
+[LamaLargeInpainter] Inpainting resolution: 1536x864
+[local] Running rendering
+[render]:   0%|          | 0/1 [00:00<?, ?it/s][render]: 100%|██████████| 1/1 [00:00<00:00, 66.25it/s]
+[local] Saving "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v3\008.jpg"
+[local] Translating: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\real_input\009.jpg"
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+WARNING: [local] No text regions! - Skipping
+[local] Saving "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v3\009.jpg"
+[local] Translating: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\real_input\010.jpg"
+[local] Loading models
+[local] Running text detection
+[DefaultDetector] Detection resolution: 1536x1024
+[local] Running ocr
+[Model48pxOCR] prob: 0.9710615873336792 Goddess... fg: (1, 227, 254) bg: (1, 227, 254)
+[local] No pre-translation replacements made.
+[local] Running text translation
+[CustomOpenAiTranslator] Translating into Chinese (Simplified)
+[CustomOpenAiTranslator] Temperature: 0.3, TopP: 0.9
+[CustomOpenAiTranslator] -- GPT Prompt --
+System:
+你是一个专业的漫画翻译引擎。请将用户提供的文本翻译成地道、流畅、口语化的简体中文。 你必须逐行翻译，保持原文的语气和情感。 如果原文已经是中文或是无意义的乱码，请原样输出。 只输出翻译结果，不要添加任何解释、注释或额外内容。
+
+User:
+<|1|>恥ずかしい… 目立ちたくない… 私が消えたい…
+<|2|>きみ… 大丈夫⁉
+<|3|>なんだこいつ 空気読めて ないのか…？
+Assistant:
+<|1|>好尴尬…我不想引人注目…我想消失…
+<|2|>你…没事吧⁉
+<|3|>这家伙怎么看不懂气氛的…？
+User:
+<|1|>Goddess...
+[CustomOpenAiTranslator] 
+-- GPT Response (raw) --
+[CustomOpenAiTranslator] <|2|>女神...
+[CustomOpenAiTranslator] ------------------------
+
+[CustomOpenAiTranslator] ['女神...']
+[CustomOpenAiTranslator] Used 174 tokens (Total: 1519)
+[CustomOpenAiTranslator] 0: Goddess... => 女神...
+[local] No post-translation replacements made.
+[local] Starting post-translation check...
+[local] Skipping page-level target language check: only 1 regions (threshold: 5)
+[local] All translation regions passed post-translation check.
+[local] Running mask refinement
+[mask]:   0%|          | 0/1 [00:00<?, ?it/s][mask]: 100%|██████████| 1/1 [00:00<00:00, 284.05it/s]
+[LamaLargeInpainter] Inpainting resolution: 1536x864
+[local] Running rendering
+[render]:   0%|          | 0/1 [00:00<?, ?it/s][render]: 100%|██████████| 1/1 [00:00<00:00, 499.92it/s]
+[local] Saving "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v3\010.jpg"
+[local] Done. Translated 10 images in 24.7 seconds
+[local] Results saved to: "F:\tools\manga-image-translator-main\manga-image-translator-main\benchmark\out_v3"
+
+real	0m39.650s
+user	0m0.015s
+sys	0m0.030s

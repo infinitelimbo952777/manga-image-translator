@@ -1,0 +1,108 @@
+{
+  "meta": {
+    "label": "b0-single-test",
+    "python": "3.11.9",
+    "torch": "2.12.1+cu132",
+    "cuda": "13.2",
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "device": "cuda",
+    "translator": "custom_openai",
+    "detector": "Detector.default",
+    "detection_size": 2048,
+    "ocr": "Ocr.ocr48px",
+    "inpainter": "Inpainter.lama_large",
+    "inpainting_size": 2048,
+    "inpainting_precision": "bf16",
+    "disable_memory_optimization": false,
+    "n_images": 1,
+    "warmup_rounds": 1,
+    "timed_rounds": 1
+  },
+  "runs": [
+    {
+      "round": 0,
+      "image": "page02.png",
+      "total_s": 8.2927,
+      "warmup": true
+    },
+    {
+      "round": 1,
+      "image": "page02.png",
+      "total_s": 2.4647,
+      "warmup": false
+    }
+  ],
+  "summary": {
+    "stages": {
+      "detection": {
+        "per_image_mean_s": 0.2014,
+        "per_image_median_s": 0.2014,
+        "share_pct": 9.0
+      },
+      "ocr": {
+        "per_image_mean_s": 0.7442,
+        "per_image_median_s": 0.7442,
+        "share_pct": 33.3
+      },
+      "textline_merge": {
+        "per_image_mean_s": 0.4154,
+        "per_image_median_s": 0.4154,
+        "share_pct": 18.6
+      },
+      "translation": {
+        "per_image_mean_s": 0.404,
+        "per_image_median_s": 0.404,
+        "share_pct": 18.1
+      },
+      "mask_refinement": {
+        "per_image_mean_s": 0.1476,
+        "per_image_median_s": 0.1476,
+        "share_pct": 6.6
+      },
+      "inpainting": {
+        "per_image_mean_s": 0.2909,
+        "per_image_median_s": 0.2909,
+        "share_pct": 13.0
+      },
+      "rendering": {
+        "per_image_mean_s": 0.0322,
+        "per_image_median_s": 0.0322,
+        "share_pct": 1.4
+      }
+    },
+    "stages_sum_per_image_s": 2.2357,
+    "per_image_mean_s": 2.4647,
+    "per_round_total_mean_s": 2.465,
+    "images_per_sec": 0.406
+  },
+  "raw_stage_samples": {
+    "detection": [
+      1.1016,
+      0.2014
+    ],
+    "ocr": [
+      1.7972,
+      0.7442
+    ],
+    "textline_merge": [
+      0.4312,
+      0.4154
+    ],
+    "translation": [
+      2.1742,
+      0.404
+    ],
+    "mask_refinement": [
+      0.1457,
+      0.1476
+    ],
+    "inpainting": [
+      0.5733,
+      0.2909
+    ],
+    "rendering": [
+      0.1729,
+      0.0322
+    ]
+  }
+}
