@@ -110,3 +110,80 @@ python devscripts/bench_render.py
 ```
 
 原始数据：`benchmark/results/*.json`（含每轮每图耗时与各阶段原始样本）。
+
+---
+
+# 批量整体优化（start.txt 工作流，2026-09-06）
+
+目标：`python -m manga_translator local -v -i <整话目录> --config-file ./config.json --use-gpu`。
+真实负载：233 页 1920x1080 JPG（`F:\jian\picture\...Chapter 6 (Comic)`），校准子集为其前 10 页
+（`benchmark/real_input/`，含 API 端到端）。所有数值为该 10 页子集实测。
+
+## 10 页子集校准（优化前代码）
+
+| 变体 | 总时长 | s/页 | 说明 |
+|---|---|---|---|
+| V1 现状 config + `-v` | 30.7s | 3.07 | start.txt 原样行为 |
+| V2 现状 config 无 `-v` | 27.4s | 2.74 | `-v` 调试写出成本 = 0.33 s/页（8 张调试 PNG/页） |
+| V3 det/inp 1536 | 24.7s | 2.47 | 配置层收益 0.27 s/页 |
+
+## 代码优化（git 提交 593dbda..8c1fd96）
+
+| 改动 | 效果 | 验证 |
+|---|---|---|
+| XPOS 位置编码缓存 + beam_k 配置化 (593dbda) | OCR 阶段 0.629 -> 0.389 s/图（-38%） | `devscripts/ocr_regression.py` 位级一致（token/张量 md5 全同） |
+| get_image_md5 原始字节哈希 (5ab149e) | 每页省一次全图 PNG 编码（数十 ms） | 语义不变，仅调试目录名变化 |
+| batch 后 force_cleanup 受 --disable-memory-optimization 门控 (b5735d5) | batch 模式从净亏损转为盈利（见下） | V4/V5/V6 对照 |
+| panel_sort_downscale 配置 (5686901) | sort 阶段 225-436ms -> 62-291ms | A/B 见下 |
+| adaptive_bg_color 渲染描边取实景色 (8c1fd96) | 消除黑/白描边块（见下） | bg_ab.py 裁剪目视 + 数值 |
+
+## 排序 A/B（6 页实测，devscripts/sort_ab.py）
+
+panel 全分辨率 / panel 降采样 2x / simple_sort 三种策略在全部含字页（003/004/005/006）
+**输出顺序完全一致**（本作为单场景 3D 漫画，分格结构弱）。sort 阶段耗时：
+panel_full 220-436ms → down2 62-291ms → simple 0ms。
+结论：本作采用 `force_simple_sort: true`；若以后翻译分格密集的日漫，改
+`force_simple_sort: false` + `panel_sort_downscale: 2`（保分格阅读顺序，速度损失约 0.1-0.2 s/页）。
+
+## batch-size 8（翻译请求 233 次 -> ~30 次）
+
+| 变体 | s/页 | 说明 |
+|---|---|---|
+| V4 batch8（修复前） | 2.86 | 每批 force_cleanup 拖累 |
+| V5 batch8+禁内存优化（修复前） | 2.69 | force_cleanup 仍无条件执行 |
+| V6 batch8+禁内存优化（b5735d5 后） | 2.05 | 反超不批的 2.47 |
+
+注：HY 接口限速 40 req/min（1.5s 间隔地板），单页请求模式下优化速度一旦低于
+1.5 s/页就会被限速卡住；batch 8 把地板摊薄到 ~0.19 s/页，是后续继续提速的前提。
+
+## 渲染黑/白描边块修复（adaptive_bg_color）
+
+实测 page 004 两个 region 的 OCR bg 检测全部判反：深蓝底上判纯白（旧逻辑→白块）、
+浅灰底上判纯黑（旧逻辑→黑块）。新方案（RenderConfig.adaptive_bg_color，默认开）
+从修复补全后的图上直接取文字多边形下像素的中位数作描边色，与背景一致；
+仅当文字色与背景过近时退回黑白保可读性。采样与绘制同图，色彩空间天然一致。
+
+## 最终配置与端到端验证
+
+config.json：`detection_size: 1536` + `inpainting_size: 1536` + `force_simple_sort: true` +
+`render.adaptive_bg_color: true`；命令：`--batch-size 8 --disable-memory-optimization`（无 `-v`）。
+
+| 轮次 | 总时长 | s/页 |
+|---|---|---|
+| V7 | 16.9s | 1.69 |
+| V8 | 17.3s | 1.73 |
+
+两轮方差 2.3%（<10% 达标），10 页输出完整、翻译正常。**相对 start.txt 原样 3.07 s/页 = -44%；
+233 页外推 ≈ 6.6 分钟（原 ≈ 11.9 分钟）**。若保留 `-v` 需 +0.33 s/页（233 页 +77s）并额外写
+~1900 张调试图。
+
+## 回归
+
+pytest：15 passed / 2 failed——均为环境问题（Baidu 密钥 54001、GitHub 下载 m2m100 返回 403），
+与改动无关；test_render 通过。OCR 输出与优化前位级一致，三轮端到端日志中 OCR 概率值完全一致。
+
+## 后续可选项（未实施）
+
+- OCR beam_k=3（config 现成开关）：预计再省 ~0.1-0.15 s/页，需抽查识别质量。
+- det/OCR fp16：detection 0.13s 还有 ~30% 空间。
+- 233 页全量跑前建议先空跑 `--save-text` 抽查排序与译文质量（本次验证止于 10 页子集）。
