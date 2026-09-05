@@ -536,7 +536,8 @@ class MangaTranslatorLocal(MangaTranslator):
             del batch
             
             # 每个批次后都执行内存清理
-            force_cleanup()
+            if memory_optimization_enabled:
+                force_cleanup()
             
             # 内存状态报告
             memory_percent, available_mb = safe_get_memory_info()
