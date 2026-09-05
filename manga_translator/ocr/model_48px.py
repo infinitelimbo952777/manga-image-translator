@@ -117,7 +117,7 @@ class Model48pxOCR(OfflineOCR):
             if self.use_gpu:
                 image_tensor = image_tensor.to(self.device)
             with torch.no_grad():
-                ret = self.model.infer_beam_batch_tensor(image_tensor, widths, beams_k = 5, max_seq_length = 255)
+                ret = self.model.infer_beam_batch_tensor(image_tensor, widths, beams_k = config.beam_k if config is not None else 5, max_seq_length = 255)
             for i, (pred_chars_index, prob, fg_pred, bg_pred, fg_ind_pred, bg_ind_pred) in enumerate(ret):
                 if prob < threshold:
                     continue
@@ -764,12 +764,13 @@ class OCR(nn.Module):
                 break
 
             N_remaining = int(len(remaining_indexs) / beams_k)
-            out_idx = out_idx.index_select(0, torch.tensor(remaining_indexs, device=img.device))
-            log_probs = log_probs.index_select(0, torch.tensor(remaining_indexs, device=img.device))
-            memory = memory.index_select(0, torch.tensor(remaining_indexs, device=img.device))
-            cached_activations = cached_activations.index_select(0, torch.tensor(remaining_indexs, device=img.device))
-            input_mask = input_mask.index_select(0, torch.tensor(remaining_indexs, device=img.device))
-            batch_index = batch_index.index_select(0, torch.tensor(remaining_indexs, device=img.device))
+            remaining_idx = torch.tensor(remaining_indexs, device=img.device)
+            out_idx = out_idx.index_select(0, remaining_idx)
+            log_probs = log_probs.index_select(0, remaining_idx)
+            memory = memory.index_select(0, remaining_idx)
+            cached_activations = cached_activations.index_select(0, remaining_idx)
+            input_mask = input_mask.index_select(0, remaining_idx)
+            batch_index = batch_index.index_select(0, remaining_idx)
 
         # Ensure we have the correct number of finished hypotheses for each sample
         if len(finished_hypos) < N: # Fallback if not enough finished hypos

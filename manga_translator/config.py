@@ -315,6 +315,8 @@ class OcrConfig(BaseModel):
     """The threshold for ignoring text in non bubble areas, with valid values ranging from 1 to 50, does not ignore others. Recommendation 5 to 10. If it is too low, normal bubble areas may be ignored, and if it is too large, non bubble areas may be considered normal bubbles"""
     prob: float | None = None
     """Minimum probability of a text region to be considered valid. If None, uses the model default."""
+    beam_k: int = 5
+    """Beam search width used by autoregressive OCR models (48px/32px). Default 5. Lower values (e.g. 3) trade recognition accuracy for speed."""
 
 class Config(BaseModel):
     # General

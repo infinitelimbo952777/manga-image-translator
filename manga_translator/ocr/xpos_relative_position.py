@@ -51,21 +51,35 @@ class XPOS(nn.Module):
         self.register_buffer(
             "scale", (torch.arange(0, head_dim, 2) + 0.4 * head_dim) / (1.4 * head_dim)
         )
+        # (length, offset, downscale, device) -> (scale, sin, cos)
+        # In beam-search decoding the same key recurs across layers and steps, so
+        # cache the computed tensors instead of rebuilding them (CPU arange/einsum
+        # + host-to-device copy) on every attention call.
+        self._pos_emb_cache = {}
+        self._pos_emb_cache_max = 4096
 
     def forward(self, x, offset=0, downscale=False):
         length = x.shape[1]
-        min_pos = -(length + offset) // 2
-        max_pos = length + offset + min_pos
-        scale = self.scale ** torch.arange(min_pos, max_pos, 1).to(self.scale).div(self.scale_base)[:, None]
-        sin, cos = fixed_pos_embedding(scale)
+        key = (length, offset, downscale, x.device)
+        cached = self._pos_emb_cache.get(key)
+        if cached is None:
+            min_pos = -(length + offset) // 2
+            max_pos = length + offset + min_pos
+            scale = self.scale ** torch.arange(min_pos, max_pos, 1).to(self.scale).div(self.scale_base)[:, None]
+            sin, cos = fixed_pos_embedding(scale)
 
-        if scale.shape[0] > length:
-            scale = scale[-length:]
-            sin = sin[-length:]
-            cos = cos[-length:]
+            if scale.shape[0] > length:
+                scale = scale[-length:]
+                sin = sin[-length:]
+                cos = cos[-length:]
 
-        if downscale:
-            scale = 1 / scale
+            if downscale:
+                scale = 1 / scale
+            cached = (scale, sin, cos)
+            if len(self._pos_emb_cache) >= self._pos_emb_cache_max:
+                self._pos_emb_cache.clear()
+            self._pos_emb_cache[key] = cached
+        scale, sin, cos = cached
 
         x = apply_rotary_pos_emb(x, sin, cos, scale)
         return x
