@@ -572,6 +572,10 @@ class MangaTranslator:
                     raise 
                 ctx.mask = ctx.mask_raw if ctx.mask_raw is not None else np.zeros_like(ctx.img_rgb, dtype=np.uint8)[:,:,0] # Fallback to raw mask or empty mask
 
+        if getattr(config.inpainter, 'expand_mask_for_halo', True) and ctx.mask is not None:
+            from .utils.generic import expand_mask_for_text_halo
+            ctx.mask = expand_mask_for_text_halo(ctx.img_rgb, ctx.mask)
+
         if self.verbose and ctx.mask is not None:
             inpaint_input_img = await dispatch_inpainting(Inpainter.none, ctx.img_rgb, ctx.mask, config.inpainter,config.inpainter.inpainting_size,
                                                           self.device, self.verbose)

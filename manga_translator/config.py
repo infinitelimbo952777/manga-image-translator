@@ -299,6 +299,8 @@ class InpainterConfig(BaseModel):
     """Inpainting precision for lama, use bf16 while you can."""
     harmonize_fill_color: bool = True
     """After inpainting, shift flat fill colors inside the text mask toward the surrounding background when they clearly deviate (fixes washed-out whitish or dark blocks left by inpainting on textured/gradient art). Pixels outside the mask are never touched."""
+    expand_mask_for_halo: bool = True
+    """Grow the text mask over the bright/dark glow around stylized lettering before inpainting, so the halo is erased together with the glyphs instead of surviving as a blob behind the translated text. No-op on uniform backgrounds (e.g. text inside a white bubble)."""
 
 class ColorizerConfig(BaseModel):
     colorization_size: int = 576

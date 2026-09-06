@@ -138,7 +138,7 @@ def get_filename_from_url(url: str, default: str = '') -> str:
         return m.group(1)
     return default
 
-def harmonize_inpaint_fill(img: np.ndarray, mask: np.ndarray, diff_threshold: float = 45, flat_max: float = 20.0, min_area: int = 100) -> np.ndarray:
+def harmonize_inpaint_fill(img: np.ndarray, mask: np.ndarray, diff_threshold: float = 36, flat_max: float = 20.0, min_area: int = 100) -> np.ndarray:
     """Shift flat inpaint fills toward the surrounding background color.
 
     The inpainter sometimes covers the erased text area with a flat color that
@@ -175,6 +175,52 @@ def harmonize_inpaint_fill(img: np.ndarray, mask: np.ndarray, diff_threshold: fl
         alpha = cv2.GaussianBlur(comp.astype(np.float32), (0, 0), 4)[..., None]
         out[y:y + h, x:x + w] = roi + (delta * alpha)
     return np.clip(out, 0, 255).astype(np.uint8)
+
+def expand_mask_for_text_halo(img: np.ndarray, mask: np.ndarray, max_expand: int = 64, ref_margin: int = 20, diff_threshold: float = 26, min_touch: int = 3) -> np.ndarray:
+    """Grow the text mask over bright/dark glow (halo) around stylized lettering.
+
+    Stylized lettering often carries a soft glow far beyond the glyph strokes.
+    The plain text mask only covers the strokes, so inpainting reconstructs the
+    glow and a bright (or dark) blob survives behind the translated text. This
+    measures the background level in a ring just outside the expansion band and
+    adds masked-adjacent pixels whose luminance clearly deviates from it, so
+    the inpainter erases the halo together with the glyphs. On uniform
+    backgrounds (e.g. text inside a white bubble) the deviation stays below
+    the threshold and the mask is left unchanged.
+    """
+    if mask is None or not isinstance(mask, np.ndarray) or not mask.any():
+        return mask
+    base = (mask > 127).astype(np.uint8)
+    # distance from every pixel to the nearest text pixel (O(n), exact L2);
+    # replaces two huge-kernel dilates which cost seconds per image
+    dist = cv2.distanceTransform((1 - base).astype(np.uint8), cv2.DIST_L2, 3)
+    grown = dist <= max_expand
+    ring = (dist > max_expand) & (dist <= max_expand + ref_margin)
+    if ring.sum() < 50:
+        return mask
+    if img.ndim == 3:
+        lum = cv2.cvtColor(img, cv2.COLOR_RGB2GRAY)
+    else:
+        lum = img
+    bg_level = float(np.median(lum[ring.astype(bool)]))
+    anomaly = (np.abs(lum.astype(np.float32) - bg_level) > diff_threshold) & (grown.astype(bool) & ~base.astype(bool))
+    if not anomaly.any():
+        return mask
+    # only keep anomalous blobs actually touching the text mask (the glow is
+    # contiguous with the glyphs); unrelated artwork in the band is preserved
+    n, labels, stats, _ = cv2.connectedComponentsWithStats(anomaly.astype(np.uint8), connectivity=8)
+    keep = np.zeros_like(anomaly, dtype=np.uint8)
+    kernel_touch = cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (min_touch * 2 + 1, min_touch * 2 + 1))
+    text_d = cv2.dilate(base, kernel_touch).astype(bool)
+    for i in range(1, n):
+        comp = labels == i
+        if (comp & text_d).any():
+            keep[comp] = 1
+    if not keep.any():
+        return mask
+    merged = ((base | keep) * 255).astype(np.uint8)
+    merged = cv2.morphologyEx(merged, cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (7, 7)))
+    return merged
 
 def download_url_with_progressbar(url: str, path: str):
     if os.path.basename(path) in ('.', '') or os.path.isdir(path):
