@@ -187,3 +187,16 @@ pytest：15 passed / 2 failed——均为环境问题（Baidu 密钥 54001、Git
 - OCR beam_k=3（config 现成开关）：预计再省 ~0.1-0.15 s/页，需抽查识别质量。
 - det/OCR fp16：detection 0.13s 还有 ~30% 空间。
 - 233 页全量跑前建议先空跑 `--save-text` 抽查排序与译文质量（本次验证止于 10 页子集）。
+
+## 补充：残留白/黑块的根因与修复（harmonize_fill_color, 219d636）
+
+`adaptive_bg_color` 上线后用户仍报告突兀白/黑块。基于 verbose 调试产物的逐连通域扫描
+（`devscripts/block_scan_mask.py`：对 `mask_final` 每个连通域比较 inpainted 掩码内填充中位数
+与掩码外环形背景中位数）定位：**块主要来自修复阶段而非描边**——lama_large 把原文字区填成
+与周边明显不符的平坦色（10 页样本 9 处：多数偏白如 fill [210,215,218] vs ring [170,177,187]，
+少数偏黑如 [11,18,26] vs [33,50,77]）。
+
+修复：`InpainterConfig.harmonize_fill_color`（默认开）。修复完成后对每个"填充平坦(std<20)且
+与环色偏差>45"的掩码连通域，把掩码内像素向环色整体平移（高斯羽化过渡）；掩码外像素不动，
+匹配良好的填充不处理。复扫同样页面：**9 处全部消除**（填充值与环色中位数差 ≤3 RGB），
+配合 adaptive_bg_color 分别解决"块"与"描边色"两个来源。
