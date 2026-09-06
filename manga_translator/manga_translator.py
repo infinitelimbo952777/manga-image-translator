@@ -572,9 +572,8 @@ class MangaTranslator:
                     raise 
                 ctx.mask = ctx.mask_raw if ctx.mask_raw is not None else np.zeros_like(ctx.img_rgb, dtype=np.uint8)[:,:,0] # Fallback to raw mask or empty mask
 
-        if getattr(config.inpainter, 'expand_mask_for_halo', True) and ctx.mask is not None:
-            from .utils.generic import expand_mask_for_text_halo
-            ctx.mask = expand_mask_for_text_halo(ctx.img_rgb, ctx.mask)
+        if ctx.mask is not None:
+            self._expand_mask_for_halo(config, ctx)
 
         if self.verbose and ctx.mask is not None:
             inpaint_input_img = await dispatch_inpainting(Inpainter.none, ctx.img_rgb, ctx.mask, config.inpainter,config.inpainter.inpainting_size,
@@ -586,9 +585,7 @@ class MangaTranslator:
         await self._report_progress('inpainting')
         try:
             ctx.img_inpainted = await self._run_inpainting(config, ctx)
-            if getattr(config.inpainter, 'harmonize_fill_color', True):
-                from .utils.generic import harmonize_inpaint_fill
-                ctx.img_inpainted = harmonize_inpaint_fill(ctx.img_inpainted, ctx.mask)
+            self._harmonize_inpainted(config, ctx)
         except Exception as e:
             logger.error(f"Error during inpainting:\n{traceback.format_exc()}")  
             if not self.ignore_errors:  
@@ -1363,6 +1360,18 @@ class MangaTranslator:
         self._model_usage_timestamps[("inpainting", config.inpainter.inpainter)] = current_time
         return await dispatch_inpainting(config.inpainter.inpainter, ctx.img_rgb, ctx.mask, config.inpainter, config.inpainter.inpainting_size, self.device,
                                          self.verbose)
+
+    def _expand_mask_for_halo(self, config: Config, ctx: Context):
+        """把美术字光晕并入修复掩码，必须在 inpainting 之前调用（顺序/批量两条路径共用）。"""
+        if getattr(config.inpainter, 'expand_mask_for_halo', True) and ctx.mask is not None:
+            from .utils.generic import expand_mask_for_text_halo
+            ctx.mask = expand_mask_for_text_halo(ctx.img_rgb, ctx.mask)
+
+    def _harmonize_inpainted(self, config: Config, ctx: Context):
+        """把修复填充中的平坦偏色拉回周边背景色，必须在 inpainting 之后调用（两条路径共用）。"""
+        if getattr(config.inpainter, 'harmonize_fill_color', True):
+            from .utils.generic import harmonize_inpaint_fill
+            ctx.img_inpainted = harmonize_inpaint_fill(ctx.img_inpainted, ctx.mask)
 
     async def _run_text_rendering(self, config: Config, ctx: Context):
         current_time = time.time()
@@ -2503,11 +2512,14 @@ class MangaTranslator:
             await self._report_progress('mask-generation')
             try:
                 ctx.mask = await self._run_mask_refinement(config, ctx)
-            except Exception as e:  
-                logger.error(f"Error during mask-generation:\n{traceback.format_exc()}")  
-                if not self.ignore_errors:  
-                    raise 
+            except Exception as e:
+                logger.error(f"Error during mask-generation:\n{traceback.format_exc()}")
+                if not self.ignore_errors:
+                    raise
                 ctx.mask = ctx.mask_raw if ctx.mask_raw is not None else np.zeros_like(ctx.img_rgb, dtype=np.uint8)[:,:,0]
+
+        if ctx.mask is not None:
+            self._expand_mask_for_halo(config, ctx)
 
         if self.verbose and ctx.mask is not None:
             try:
@@ -2533,10 +2545,11 @@ class MangaTranslator:
         await self._report_progress('inpainting')
         try:
             ctx.img_inpainted = await self._run_inpainting(config, ctx)
+            self._harmonize_inpainted(config, ctx)
 
-        except Exception as e:  
-            logger.error(f"Error during inpainting:\n{traceback.format_exc()}")  
-            if not self.ignore_errors:  
+        except Exception as e:
+            logger.error(f"Error during inpainting:\n{traceback.format_exc()}")
+            if not self.ignore_errors:
                 raise
             else:
                 ctx.img_inpainted = ctx.img_rgb

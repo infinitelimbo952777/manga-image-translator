@@ -214,3 +214,11 @@ pytest：15 passed / 2 failed——均为环境问题（Baidu 密钥 54001、Git
 inpainting 0.195s vs 0.202s（几乎零成本）；配套把 harmonize 偏差阈值 45→36 覆盖暗色污渍
 边缘情况（page 004 "*yawn*" diff=41）。子集复扫 0 残留（用户旧全量批的 3 个历史文件夹除外，
 源图不在本次子集，机制相同已由子集验证）。
+
+## 补充3：批量路径漏接修复（用户复跑仍见光晕）
+
+用户以 `--batch-size 8` 全量复跑后仍见光晕：`expand_mask_for_halo` 与 `harmonize_fill_color`
+此前只接在顺序路径 `_translate`，而批处理走 `translate_batch -> _complete_translation_pipeline`
+的独立掩码/修复段。已把两个钩子抽成共用方法 `_expand_mask_for_halo` / `_harmonize_inpainted`，
+顺序与批量两条路径统一调用。用户原命令在 10 页子集复验：page 005 受影响区域亮白像素 0.0%，
+光晕完全擦除，18.5s/10页（与光晕扩展前持平）。
