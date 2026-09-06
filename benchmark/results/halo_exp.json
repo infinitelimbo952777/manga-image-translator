@@ -1,0 +1,277 @@
+{
+  "meta": {
+    "label": "halo_exp",
+    "python": "3.11.9",
+    "torch": "2.12.1+cu132",
+    "cuda": "13.2",
+    "gpu": "NVIDIA GeForce RTX 3080",
+    "device": "cuda",
+    "translator": "custom_openai",
+    "detector": "Detector.default",
+    "detection_size": 1536,
+    "ocr": "Ocr.ocr48px",
+    "inpainter": "Inpainter.lama_large",
+    "inpainting_size": 1536,
+    "inpainting_precision": "bf16",
+    "disable_memory_optimization": false,
+    "n_images": 5,
+    "warmup_rounds": 1,
+    "timed_rounds": 2
+  },
+  "runs": [
+    {
+      "round": 0,
+      "image": "page01.png",
+      "total_s": 5.8068,
+      "warmup": true
+    },
+    {
+      "round": 0,
+      "image": "page02.png",
+      "total_s": 2.4679,
+      "warmup": true
+    },
+    {
+      "round": 0,
+      "image": "page03.png",
+      "total_s": 2.2159,
+      "warmup": true
+    },
+    {
+      "round": 0,
+      "image": "page04.png",
+      "total_s": 2.48,
+      "warmup": true
+    },
+    {
+      "round": 0,
+      "image": "page05.png",
+      "total_s": 2.1022,
+      "warmup": true
+    },
+    {
+      "round": 1,
+      "image": "page01.png",
+      "total_s": 1.4794,
+      "warmup": false
+    },
+    {
+      "round": 1,
+      "image": "page02.png",
+      "total_s": 1.7824,
+      "warmup": false
+    },
+    {
+      "round": 1,
+      "image": "page03.png",
+      "total_s": 1.6912,
+      "warmup": false
+    },
+    {
+      "round": 1,
+      "image": "page04.png",
+      "total_s": 1.9166,
+      "warmup": false
+    },
+    {
+      "round": 1,
+      "image": "page05.png",
+      "total_s": 1.547,
+      "warmup": false
+    },
+    {
+      "round": 2,
+      "image": "page01.png",
+      "total_s": 1.6453,
+      "warmup": false
+    },
+    {
+      "round": 2,
+      "image": "page02.png",
+      "total_s": 1.7618,
+      "warmup": false
+    },
+    {
+      "round": 2,
+      "image": "page03.png",
+      "total_s": 1.6396,
+      "warmup": false
+    },
+    {
+      "round": 2,
+      "image": "page04.png",
+      "total_s": 1.949,
+      "warmup": false
+    },
+    {
+      "round": 2,
+      "image": "page05.png",
+      "total_s": 1.6205,
+      "warmup": false
+    }
+  ],
+  "summary": {
+    "stages": {
+      "detection": {
+        "per_image_mean_s": 0.1338,
+        "per_image_median_s": 0.1338,
+        "share_pct": 8.6
+      },
+      "ocr": {
+        "per_image_mean_s": 0.3751,
+        "per_image_median_s": 0.4234,
+        "share_pct": 24.2
+      },
+      "textline_merge": {
+        "per_image_mean_s": 0.4416,
+        "per_image_median_s": 0.461,
+        "share_pct": 28.5
+      },
+      "translation": {
+        "per_image_mean_s": 0.2972,
+        "per_image_median_s": 0.2783,
+        "share_pct": 19.2
+      },
+      "mask_refinement": {
+        "per_image_mean_s": 0.0883,
+        "per_image_median_s": 0.0878,
+        "share_pct": 5.7
+      },
+      "inpainting": {
+        "per_image_mean_s": 0.1949,
+        "per_image_median_s": 0.1924,
+        "share_pct": 12.6
+      },
+      "rendering": {
+        "per_image_mean_s": 0.0184,
+        "per_image_median_s": 0.0213,
+        "share_pct": 1.2
+      }
+    },
+    "stages_sum_per_image_s": 1.5493,
+    "per_image_mean_s": 1.7033,
+    "per_round_total_mean_s": 8.516,
+    "images_per_sec": 0.587
+  },
+  "raw_stage_samples": {
+    "detection": [
+      0.9199,
+      0.1293,
+      0.1273,
+      0.1351,
+      0.1305,
+      0.1295,
+      0.1286,
+      0.1341,
+      0.1414,
+      0.134,
+      0.1252,
+      0.1374,
+      0.1321,
+      0.1335,
+      0.1419
+    ],
+    "ocr": [
+      1.163,
+      1.0636,
+      0.9801,
+      0.9776,
+      0.8704,
+      0.2176,
+      0.4337,
+      0.4395,
+      0.4257,
+      0.3579,
+      0.2235,
+      0.4211,
+      0.4283,
+      0.4257,
+      0.3783
+    ],
+    "textline_merge": [
+      0.5074,
+      0.3692,
+      0.4473,
+      0.4775,
+      0.4449,
+      0.4814,
+      0.3342,
+      0.4986,
+      0.4624,
+      0.436,
+      0.4682,
+      0.3404,
+      0.4364,
+      0.4597,
+      0.4984
+    ],
+    "translation": [
+      1.1226,
+      0.428,
+      0.2209,
+      0.3268,
+      0.2212,
+      0.2197,
+      0.4313,
+      0.1969,
+      0.3334,
+      0.2195,
+      0.388,
+      0.4278,
+      0.2233,
+      0.3356,
+      0.1964
+    ],
+    "mask_refinement": [
+      0.0913,
+      0.1173,
+      0.0699,
+      0.0799,
+      0.0817,
+      0.105,
+      0.1044,
+      0.0802,
+      0.0827,
+      0.0711,
+      0.0934,
+      0.0993,
+      0.0777,
+      0.093,
+      0.0763
+    ],
+    "inpainting": [
+      0.3816,
+      0.1931,
+      0.2248,
+      0.1963,
+      0.2187,
+      0.1931,
+      0.1947,
+      0.1893,
+      0.192,
+      0.1913,
+      0.2192,
+      0.1907,
+      0.1928,
+      0.1981,
+      0.1882
+    ],
+    "rendering": [
+      0.1687,
+      0.0381,
+      0.0163,
+      0.0313,
+      0.0152,
+      0.0212,
+      0.0265,
+      0.0117,
+      0.0226,
+      0.0115,
+      0.0213,
+      0.0221,
+      0.0138,
+      0.0216,
+      0.0116
+    ]
+  }
+}
