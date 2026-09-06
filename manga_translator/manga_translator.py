@@ -582,7 +582,10 @@ class MangaTranslator:
         await self._report_progress('inpainting')
         try:
             ctx.img_inpainted = await self._run_inpainting(config, ctx)
-        except Exception as e:  
+            if getattr(config.inpainter, 'harmonize_fill_color', True):
+                from .utils.generic import harmonize_inpaint_fill
+                ctx.img_inpainted = harmonize_inpaint_fill(ctx.img_inpainted, ctx.mask)
+        except Exception as e:
             logger.error(f"Error during inpainting:\n{traceback.format_exc()}")  
             if not self.ignore_errors:  
                 raise

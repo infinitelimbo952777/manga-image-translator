@@ -297,6 +297,8 @@ class InpainterConfig(BaseModel):
     """Size of image used for inpainting (too large will result in OOM)"""
     inpainting_precision: InpaintPrecision = InpaintPrecision.bf16
     """Inpainting precision for lama, use bf16 while you can."""
+    harmonize_fill_color: bool = True
+    """After inpainting, shift flat fill colors inside the text mask toward the surrounding background when they clearly deviate (fixes washed-out whitish or dark blocks left by inpainting on textured/gradient art). Pixels outside the mask are never touched."""
 
 class ColorizerConfig(BaseModel):
     colorization_size: int = 576

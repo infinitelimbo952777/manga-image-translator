@@ -138,6 +138,44 @@ def get_filename_from_url(url: str, default: str = '') -> str:
         return m.group(1)
     return default
 
+def harmonize_inpaint_fill(img: np.ndarray, mask: np.ndarray, diff_threshold: float = 45, flat_max: float = 20.0, min_area: int = 100) -> np.ndarray:
+    """Shift flat inpaint fills toward the surrounding background color.
+
+    The inpainter sometimes covers the erased text area with a flat color that
+    is clearly off from the surrounding background (washed-out whitish or dark
+    blocks on textured/gradient art). For each connected mask component whose
+    fill is flat and deviates from the ring of pixels around it, shift the
+    masked pixels toward the ring color with a feathered alpha so the seam
+    stays smooth. Pixels outside the mask are never modified.
+    """
+    if mask is None or not isinstance(mask, np.ndarray) or not mask.any():
+        return img
+    out = img.astype(np.float32)
+    n, labels, stats, _ = cv2.connectedComponentsWithStats(mask.astype(np.uint8), connectivity=8)
+    for i in range(1, n):
+        x, y, w, h, area = stats[i]
+        if area < min_area:
+            continue
+        comp_full = labels == i
+        comp = comp_full[y:y + h, x:x + w]
+        sel = img[y:y + h, x:x + w][comp]
+        fill = np.median(sel, axis=0)
+        flat = float(np.mean(np.std(sel, axis=0)))
+        if flat > flat_max:
+            continue
+        ring_m = cv2.dilate(comp_full.astype(np.uint8), np.ones((21, 21), np.uint8)).astype(bool) & ~comp_full
+        ring_sel = img[ring_m]
+        if ring_sel.shape[0] < 40:
+            continue
+        ring = np.median(ring_sel, axis=0)
+        delta = ring.astype(np.float32) - fill.astype(np.float32)
+        if float(np.sqrt(np.sum(delta ** 2))) <= diff_threshold:
+            continue
+        roi = out[y:y + h, x:x + w]
+        alpha = cv2.GaussianBlur(comp.astype(np.float32), (0, 0), 4)[..., None]
+        out[y:y + h, x:x + w] = roi + (delta * alpha)
+    return np.clip(out, 0, 255).astype(np.uint8)
+
 def download_url_with_progressbar(url: str, path: str):
     if os.path.basename(path) in ('.', '') or os.path.isdir(path):
         new_filename = get_filename_from_url(url)
