@@ -6,6 +6,18 @@ import networkx as nx
 from shapely.geometry import Polygon
 
 from ..utils import TextBlock, Quadrilateral, quadrilateral_can_merge_region
+from ..utils.generic2 import color_difference
+
+# Lines whose glyph colors differ more than this must not share one text
+# region: a region renders with a single averaged fill color, so merging e.g.
+# vivid pink SFX with adjacent white dialogue produces a murky averaged color
+# (measured: same-color jitter < 12, pink-vs-white / red-vs-blue > 100).
+COLOR_COMPAT_THRESHOLD = 35
+
+
+def _colors_compatible(a: Quadrilateral, b: Quadrilateral) -> bool:
+    return color_difference(a.fg_colors, b.fg_colors) < COLOR_COMPAT_THRESHOLD \
+        and color_difference(a.bg_colors, b.bg_colors) < COLOR_COMPAT_THRESHOLD
 
 def split_text_region(
         bboxes: List[Quadrilateral],
@@ -131,7 +143,7 @@ def merge_bboxes_text_region(bboxes: List[Quadrilateral], width, height):
 
     for ((u, ubox), (v, vbox)) in itertools.combinations(enumerate(bboxes), 2):
         # if quadrilateral_can_merge_region_coarse(ubox, vbox):
-        if quadrilateral_can_merge_region(ubox, vbox, aspect_ratio_tol=1.3, font_size_ratio_tol=2,
+        if _colors_compatible(ubox, vbox) and quadrilateral_can_merge_region(ubox, vbox, aspect_ratio_tol=1.3, font_size_ratio_tol=2,
                                           char_gap_tolerance=1, char_gap_tolerance2=3):
             G.add_edge(u, v)
 
