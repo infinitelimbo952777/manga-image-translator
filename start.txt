@@ -1,4 +1,7 @@
 python -m manga_translator local --batch-size 8 --disable-memory-optimization -i "F:\jian\picture\[Serge3DX] Milf Breeder Chapter 6 (Comic)" --config-file ./config.json --use-gpu
 
+# CTD 检测器版本(竖排日文实测明显更好,web UI 同款默认;其余配置与 config.json 一致)
+python -m manga_translator local --batch-size 8 --disable-memory-optimization -i "F:\jian\picture\[Serge3DX] Milf Breeder Chapter 6 (Comic)" --config-file ./config-ctd.json --use-gpu
+
 # 优化前原命令（保留备查：~3.07s/页；推荐命令 ~1.7s/页，详见 benchmark/PERF_REPORT.md）
 # python -m manga_translator local -v -i "F:\jian\picture\[Serge3DX] Milf Breeder Chapter 6 (Comic)" --config-file ./config.json  --use-gpu -v

@@ -68,3 +68,5 @@ benchmark/results/*.prof
 benchmark/bg_crops/
 benchmark/v*_log.txt
 benchmark/block_crops*/
+logs/
+.workbuddy/

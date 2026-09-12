@@ -8,37 +8,39 @@ export const fetchStatusText = (
 ) => {
   switch (status) {
     case "upload":
-      return progress ? `Uploading (${progress})` : "Uploading";
+      return progress ? `上传中(${progress})` : "上传中";
     case "pending":
-      return queuePos ? `Queuing, your position is ${queuePos}` : "Processing";
+      return queuePos ? `排队等待中,当前第 ${queuePos} 位` : "处理中";
     case "detection":
-      return "Detecting texts";
+      return "正在检测文字区域";
     case "ocr":
-      return "Running OCR";
+      return "正在识别文字(OCR)";
+    case "textline_merge":
+      return "正在合并文本行";
     case "mask-generation":
-      return "Generating text mask";
+      return "正在生成文字遮罩";
     case "inpainting":
-      return "Running inpainting";
+      return "正在抹除原文字(图像修复)";
     case "upscaling":
-      return "Running upscaling";
+      return "正在放大图像";
     case "translating":
-      return "Translating";
+      return "正在翻译";
     case "rendering":
-      return "Rendering translated texts";
+      return "正在渲染译文";
     case "finished":
-      return "Downloading image";
+      return "正在下载图像";
     case "error":
-      return error || "Something went wrong, please try again";
+      return error || "出错了,请重试";
     case "error-upload":
-      return "Upload failed, please try again";
+      return "上传失败,请重试";
     case "error-lang":
-      return "Your target language is not supported by the chosen translator";
+      return "所选翻译引擎不支持目标语言";
     case "error-translating":
-      return "No text returned from the text translation service";
+      return "翻译服务未返回文本";
     case "error-too-large":
-      return "Image size too large (greater than 8000x8000 px)";
+      return "图片尺寸过大(超过 8000x8000 像素)";
     case "error-disconnect":
-      return "Lost connection to server";
+      return "与服务器的连接已断开";
     default:
       return "";
   }

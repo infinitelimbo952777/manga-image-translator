@@ -8,9 +8,11 @@ import {
   textDetectorOptions,
   inpaintingSizes,
   inpainterOptions,
+  ocrModelOptions,
 } from "@/config";
 import { LabeledInput } from "@/components/LabeledInput";
 import { LabeledSelect } from "@/components/LabeledSelect";
+import { LabeledToggle } from "@/components/LabeledToggle";
 
 type Props = {
   detectionResolution: string;
@@ -23,6 +25,10 @@ type Props = {
   customBoxThreshold: number;
   maskDilationOffset: number;
   inpainter: string;
+  ocrModel: string;
+  detRotate: boolean;
+  detAutoRotate: boolean;
+  concurrency: number;
 
   setDetectionResolution: (val: string) => void;
   setTextDetector: (val: string) => void;
@@ -34,6 +40,10 @@ type Props = {
   setCustomBoxThreshold: (val: number) => void;
   setMaskDilationOffset: (val: number) => void;
   setInpainter: (val: string) => void;
+  setOcrModel: (val: string) => void;
+  setDetRotate: (val: boolean) => void;
+  setDetAutoRotate: (val: boolean) => void;
+  setConcurrency: (val: number) => void;
 };
 
 export const OptionsPanel: React.FC<Props> = ({
@@ -47,6 +57,10 @@ export const OptionsPanel: React.FC<Props> = ({
   customBoxThreshold,
   maskDilationOffset,
   inpainter,
+  ocrModel,
+  detRotate,
+  detAutoRotate,
+  concurrency,
   setDetectionResolution,
   setTextDetector,
   setRenderTextDirection,
@@ -57,6 +71,10 @@ export const OptionsPanel: React.FC<Props> = ({
   setCustomBoxThreshold,
   setMaskDilationOffset,
   setInpainter,
+  setOcrModel,
+  setDetRotate,
+  setDetAutoRotate,
+  setConcurrency,
 }) => {
   return (
     <>
@@ -65,9 +83,9 @@ export const OptionsPanel: React.FC<Props> = ({
         {/* Detection Resolution */}
         <LabeledSelect
           id="detectionResolution"
-          label="Detection Resolution"
+          label="检测分辨率"
           icon="carbon:fit-to-screen"
-          title="Detection resolution"
+          title="文本检测分辨率,越大越准也越慢"
           value={detectionResolution}
           onChange={setDetectionResolution}
           options={detectionResolutions.map((res) => ({
@@ -79,9 +97,9 @@ export const OptionsPanel: React.FC<Props> = ({
         {/* Text Detector */}
         <LabeledSelect
           id="textDetector"
-          label="Text Detector"
+          label="文本检测器"
           icon="carbon:search-locate"
-          title="Text detector"
+          title="文字区域检测算法"
           value={textDetector}
           onChange={setTextDetector}
           options={textDetectorOptions}
@@ -90,24 +108,24 @@ export const OptionsPanel: React.FC<Props> = ({
         {/* Render text direction */}
         <LabeledSelect
           id="renderTextDirection"
-          label="Render Direction"
+          label="渲染方向"
           icon="carbon:text-align-left"
-          title="Render text orientation"
+          title="译文排版方向"
           value={renderTextDirection}
           onChange={setRenderTextDirection}
           options={[
-            { value: "auto", label: "Auto" },
-            { value: "horizontal", label: "Horizontal" },
-            { value: "vertical", label: "Vertical" },
+            { value: "auto", label: "自动" },
+            { value: "horizontal", label: "横向" },
+            { value: "vertical", label: "竖向" },
           ]}
         />
 
         {/* Translator */}
         <LabeledSelect
           id="translator"
-          label="Translator"
+          label="翻译引擎"
           icon="carbon:operations-record"
-          title="Translator"
+          title="翻译服务"
           value={translator}
           onChange={(val) => setTranslator(val as TranslatorKey)}
           options={validTranslators.map((key) => ({
@@ -119,9 +137,9 @@ export const OptionsPanel: React.FC<Props> = ({
         {/* Target Language */}
         <LabeledSelect
           id="targetLanguage"
-          label="Target Language"
+          label="目标语言"
           icon="carbon:language"
-          title="Target language"
+          title="译文目标语言"
           value={targetLanguage}
           onChange={setTargetLanguage}
           options={languageOptions}
@@ -133,9 +151,9 @@ export const OptionsPanel: React.FC<Props> = ({
         {/* Inpainting Size */}
         <LabeledSelect
           id="inpaintingSize"
-          label="Inpainting Size"
+          label="修复分辨率"
           icon="carbon:paint-brush"
-          title="Inpainting size"
+          title="图像修复的处理尺寸"
           value={inpaintingSize}
           onChange={setInpaintingSize}
           options={inpaintingSizes.map((size) => ({
@@ -147,9 +165,9 @@ export const OptionsPanel: React.FC<Props> = ({
         {/* Unclip Ratio */}
         <LabeledInput
           id="unclipRatio"
-          label="Unclip Ratio"
+          label="文本框外扩比例"
           icon="weui:max-window-filled"
-          title="Unclip ratio"
+          title="文字框向外扩展的比例"
           step={0.01}
           value={customUnclipRatio}
           onChange={setCustomUnclipRatio}
@@ -158,9 +176,9 @@ export const OptionsPanel: React.FC<Props> = ({
         {/* Box Threshold */}
         <LabeledInput
           id="boxThreshold"
-          label="Box Threshold"
+          label="检测阈值"
           icon="weui:photo-wall-outlined"
-          title="Box threshold"
+          title="文字检测置信度阈值"
           step={0.01}
           value={customBoxThreshold}
           onChange={setCustomBoxThreshold}
@@ -169,9 +187,9 @@ export const OptionsPanel: React.FC<Props> = ({
         {/* Mask Dilation Offset */}
         <LabeledInput
           id="maskDilationOffset"
-          label="Mask Dilation Offset"
+          label="遮罩膨胀偏移"
           icon="material-symbols:adjust-outline"
-          title="Mask dilation offset"
+          title="抹字遮罩的膨胀程度"
           step={1}
           value={maskDilationOffset}
           onChange={setMaskDilationOffset}
@@ -180,12 +198,61 @@ export const OptionsPanel: React.FC<Props> = ({
         {/* Inpainter */}
         <LabeledSelect
           id="inpainter"
-          label="Inpainter"
+          label="图像修复器"
           icon="carbon:paint-brush"
-          title="Inpainter"
+          title="抹除文字后填补背景的算法"
           value={inpainter}
           onChange={setInpainter}
           options={inpainterOptions}
+        />
+      </div>
+      {/* 3段目のセクション:检测增强 */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 mt-4">
+        {/* Vertical-friendly detection */}
+        <LabeledToggle
+          id="detAutoRotate"
+          label="竖排文字增强"
+          icon="carbon:rotate-counterclockwise"
+          title="检测时旋转图像以优先识别竖排文字行(竖排日文漫画建议开启)"
+          value={detAutoRotate}
+          onChange={setDetAutoRotate}
+        />
+
+        {/* Rotate detection */}
+        <LabeledToggle
+          id="detRotate"
+          label="旋转检测"
+          icon="carbon:rotate-90"
+          title="检测时旋转图像,对横竖混排可能提升检测效果"
+          value={detRotate}
+          onChange={setDetRotate}
+        />
+
+        {/* OCR model */}
+        <LabeledSelect
+          id="ocrModel"
+          label="OCR 模型"
+          icon="carbon:text-annotation"
+          title="文字识别模型;Hayai 对竖排/彩字/多语言最稳,MangaOCR 仅日文"
+          value={ocrModel}
+          onChange={setOcrModel}
+          options={ocrModelOptions}
+        />
+
+        {/* Concurrency */}
+        <LabeledSelect
+          id="concurrency"
+          label="同时翻译张数"
+          icon="carbon:progress-bar"
+          title="批量翻译时同时处理的图片数(相当于 CLI 的 --batch-size)。调大更快,但显存不足可能失败"
+          value={String(concurrency)}
+          onChange={(val) => setConcurrency(Number(val))}
+          options={[
+            { value: "1", label: "1(最稳)" },
+            { value: "2", label: "2" },
+            { value: "4", label: "4(推荐)" },
+            { value: "8", label: "8(需大显存)" },
+          ]}
         />
       </div>
     </>

@@ -94,14 +94,11 @@ export interface FileStatus {
   error: string | null;
 }
 
-// New types for the improved UI
-export interface QueuedImage {
+/** 待翻译文件(id 由相对路径+修改时间+大小唯一确定,用于状态索引与去重) */
+export interface FileEntry {
   id: string;
   file: File;
-  addedAt: Date;
-  status: 'queued' | 'processing' | 'finished' | 'error';
-  result?: Blob;
-  error?: string;
+  relativePath: string;
 }
 
 export interface TranslationSettings {
@@ -115,6 +112,11 @@ export interface TranslationSettings {
   customBoxThreshold: number;
   maskDilationOffset: number;
   inpainter: string;
+  ocrModel: string;
+  detRotate: boolean;
+  detAutoRotate: boolean;
+  /** 批量翻译时同时请求的图片数(web 模式下 --batch-size 的等价物) */
+  concurrency: number;
 }
 
 export interface FinishedImage {

@@ -5,6 +5,7 @@ import shutil
 import signal
 import subprocess
 import sys
+import threading
 from argparse import Namespace
 import asyncio
 
@@ -25,6 +26,8 @@ from server.to_json import to_translation, TranslationResponse
 
 app = FastAPI()
 nonce = None
+worker_proc = None  # translator worker started by start_translator_client_proc
+_shutdown_started = False
 
 app.add_middleware(
     CORSMiddleware,
@@ -44,6 +47,101 @@ async def register_instance(instance: ExecutorInstance, req: Request, req_nonce:
         raise HTTPException(401, detail="Invalid nonce")
     instance.ip = req.client.host
     executor_instances.register(instance)
+
+def _proc_info_windows(pid: int):
+    """Best-effort (parent_pid, name) lookup via PowerShell CIM (wmic is deprecated)."""
+    try:
+        out = subprocess.run(
+            ["powershell", "-NoProfile", "-Command",
+             f"$p = Get-CimInstance Win32_Process -Filter 'ProcessId={pid}';"
+             "if ($p) { Write-Output \"$($p.ParentProcessId) $($p.Name)\" }"],
+            capture_output=True, text=True, timeout=10,
+            encoding="utf-8", errors="replace",
+        ).stdout.strip()
+        parts = out.split(None, 1)
+        if len(parts) == 2 and parts[0].isdigit():
+            return int(parts[0]), parts[1]
+    except Exception:
+        pass
+    return None
+
+def _kill_with_cmd_parents(pid_str: str):
+    """Kill the process tree, then any cmd.exe wrappers above it so no
+    leftover `cmd /k` service windows (or hidden wrappers) survive."""
+    chain = []
+    current = pid_str
+    for _ in range(5):
+        info = _proc_info_windows(int(current))
+        if not info:
+            break
+        ppid, name = info
+        if name.lower() == "cmd.exe":
+            chain.append(str(ppid))
+            current = str(ppid)
+        else:
+            break
+    subprocess.run(["taskkill", "/PID", pid_str, "/T", "/F"], capture_output=True)
+    for ancestor in chain:
+        subprocess.run(["taskkill", "/PID", ancestor, "/F"], capture_output=True)
+
+def _kill_frontend_on_port(port: int):
+    """Best-effort: kill the web dev server listening on the given port."""
+    if os.name == "nt":
+        # NOTE: no `-p TCP` filter here - vite may bind to IPv6 ([::1]:port),
+        # which only shows up under the TCPv6 section of netstat.
+        # errors="replace": netstat headers are GBK on localized Windows while
+        # this project may run python in UTF-8 mode; the fields we parse are ASCII.
+        out = subprocess.run(["netstat", "-ano"],
+                             capture_output=True, text=True, timeout=10,
+                             encoding="utf-8", errors="replace").stdout
+        pids = set()
+        for line in out.splitlines():
+            parts = line.split()
+            if (len(parts) >= 5 and parts[0].upper().startswith("TCP")
+                    and parts[3].upper() == "LISTENING"
+                    and parts[1].endswith(f":{port}")):
+                pids.add(parts[4])
+        for pid in pids:
+            _kill_with_cmd_parents(pid)
+    else:
+        try:
+            import psutil
+            for conn in psutil.net_connections(kind="tcp"):
+                if conn.status == psutil.CONN_LISTEN and conn.laddr.port == port and conn.pid:
+                    psutil.Process(conn.pid).kill()
+        except Exception:
+            subprocess.run(["fuser", "-k", f"{port}/tcp"], capture_output=True)
+
+def _perform_shutdown():
+    global worker_proc
+    # 1) terminate the worker (this is what holds the model memory)
+    try:
+        if worker_proc is not None:
+            worker_proc.terminate()
+            try:
+                worker_proc.wait(timeout=5)
+            except Exception:
+                worker_proc.kill()
+    except Exception:
+        pass
+    # 2) stop the web dev server (best effort)
+    try:
+        _kill_frontend_on_port(5173)
+    except Exception:
+        pass
+    # 3) stop this server; processes gone = memory freed
+    os._exit(0)
+
+@app.post("/shutdown", tags=["api"])
+async def shutdown():
+    """Quit the whole web UI: worker + this server + the frontend dev server."""
+    global _shutdown_started
+    if _shutdown_started:
+        return {"message": "shutting down"}
+    _shutdown_started = True
+    # give the response time to reach the browser before everything dies
+    threading.Timer(1.5, _perform_shutdown).start()
+    return {"message": "shutting down"}
 
 def transform_to_image(ctx):
     # 检查是否使用占位符（在web模式下final.png保存后会设置此标记）
@@ -238,6 +336,7 @@ def generate_nonce():
     return secrets.token_hex(16)
 
 def start_translator_client_proc(host: str, port: int, nonce: str, params: Namespace):
+    global worker_proc
     cmds = [
         sys.executable,
         '-m', 'manga_translator',
@@ -263,6 +362,7 @@ def start_translator_client_proc(host: str, port: int, nonce: str, params: Names
     base_path = os.path.dirname(os.path.abspath(__file__))
     parent = os.path.dirname(base_path)
     proc = subprocess.Popen(cmds, cwd=parent)
+    worker_proc = proc
     executor_instances.register(ExecutorInstance(ip=host, port=port))
 
     def handle_exit_signals(signal, frame):

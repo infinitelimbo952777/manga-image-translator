@@ -1,7 +1,7 @@
-import type { TranslationSettings, FinishedImage } from '@/types';
+import type { TranslationSettings } from '@/types';
 
-const SETTINGS_KEY = 'manga-translator-settings';
-const FINISHED_IMAGES_KEY = 'manga-translator-finished-images';
+const SETTINGS_KEY = 'manga-translator-settings-v3';
+const LEGACY_FINISHED_IMAGES_KEY = 'manga-translator-finished-images';
 
 export const loadSettings = (): Partial<TranslationSettings> => {
   try {
@@ -21,32 +21,14 @@ export const saveSettings = (settings: TranslationSettings): void => {
   }
 };
 
-export const loadFinishedImages = (): FinishedImage[] => {
+/**
+ * 旧版本曾把结果图 Blob 直接 JSON.stringify 进 localStorage(Blob 会序列化成
+ * 空对象,刷新后画廊崩溃),这里清掉这批坏数据。
+ */
+export const clearLegacyFinishedImages = (): void => {
   try {
-    const stored = localStorage.getItem(FINISHED_IMAGES_KEY);
-    return stored ? JSON.parse(stored) : [];
+    localStorage.removeItem(LEGACY_FINISHED_IMAGES_KEY);
   } catch (error) {
-    console.warn('Failed to load finished images from localStorage:', error);
-    return [];
+    console.warn('Failed to clean legacy gallery data:', error);
   }
 };
-
-export const saveFinishedImages = (images: FinishedImage[]): void => {
-  try {
-    // Keep only the last 50 images to prevent localStorage from getting too large
-    const limitedImages = images.slice(-50);
-    localStorage.setItem(FINISHED_IMAGES_KEY, JSON.stringify(limitedImages));
-  } catch (error) {
-    console.warn('Failed to save finished images to localStorage:', error);
-  }
-};
-
-export const addFinishedImage = (image: FinishedImage): void => {
-  try {
-    const existing = loadFinishedImages();
-    const updated = [image, ...existing]; // Add new image at the top
-    saveFinishedImages(updated);
-  } catch (error) {
-    console.warn('Failed to add finished image to localStorage:', error);
-  }
-}; 

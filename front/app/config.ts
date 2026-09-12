@@ -32,18 +32,26 @@ export const detectionResolutions = [1024, 1536, 2048, 2560];
 export const inpaintingSizes = [516, 1024, 2048, 2560];
 
 export const textDetectorOptions = [
-  { value: "default", label: "Default" },
+  { value: "default", label: "默认" },
   { value: "ctd", label: "CTD" },
   { value: "paddle", label: "Paddle" },
 ];
 
 export const inpainterOptions = [
-  { value: "default", label: "Default" },
+  { value: "default", label: "默认" },
   { value: "lama_large", label: "Lama Large" },
   { value: "lama_mpe", label: "Lama MPE" },
-  { value: "sd", label: "SD" },
-  { value: "none", label: "None" },
-  { value: "original", label: "Original" },
+  { value: "sd", label: "Stable Diffusion" },
+  { value: "none", label: "无(不修复)" },
+  { value: "original", label: "使用原图" },
+];
+
+export const ocrModelOptions = [
+  { value: "48px", label: "48px(默认,批量快)" },
+  { value: "32px", label: "32px(更快,精度低)" },
+  { value: "48px_ctc", label: "48px CTC" },
+  { value: "mocr", label: "MangaOCR(日文漫画,较慢)" },
+  { value: "hayai", label: "Hayai OCR v2(日/中/韩/英,竖排优)" },
 ];
 
 export const imageMimeTypes = [
