@@ -1,0 +1,1564 @@
+{
+  "crops": [
+    {
+      "file": "ja_h_0_L0.png",
+      "page": "ja_h_0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "plain",
+      "text": "今日はいい天気だね"
+    },
+    {
+      "file": "ja_h_0_L1.png",
+      "page": "ja_h_0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "plain",
+      "text": "俺は絶対に諦めない"
+    },
+    {
+      "file": "ja_h_0_L2.png",
+      "page": "ja_h_0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "plain",
+      "text": "明日の朝、駅前に集合してください"
+    },
+    {
+      "file": "ja_h_0_L3.png",
+      "page": "ja_h_0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "plain",
+      "text": "これは何ですか？"
+    },
+    {
+      "file": "ja_h_1_L0.png",
+      "page": "ja_h_1.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "plain",
+      "text": "これは何ですか？"
+    },
+    {
+      "file": "ja_h_1_L1.png",
+      "page": "ja_h_1.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "plain",
+      "text": "明日の朝、駅前に集合してください"
+    },
+    {
+      "file": "ja_h_1_L2.png",
+      "page": "ja_h_1.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "plain",
+      "text": "俺は絶対に諦めない"
+    },
+    {
+      "file": "ja_h_1_L3.png",
+      "page": "ja_h_1.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "plain",
+      "text": "今日はいい天気だね"
+    },
+    {
+      "file": "ja_v_0_L0.png",
+      "page": "ja_v_0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "plain",
+      "text": "これは運命の出会いかもしれない"
+    },
+    {
+      "file": "ja_v_0_L1.png",
+      "page": "ja_v_0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "plain",
+      "text": "彼女は静かに首を縦に振った"
+    },
+    {
+      "file": "ja_v_0_L2.png",
+      "page": "ja_v_0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "plain",
+      "text": "今夜はラーメンに決めた"
+    },
+    {
+      "file": "ja_v_0_L3.png",
+      "page": "ja_v_0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "plain",
+      "text": "その時、空から光が降り注いだ"
+    },
+    {
+      "file": "ja_v_1_L0.png",
+      "page": "ja_v_1.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "plain",
+      "text": "その時、空から光が降り注いだ"
+    },
+    {
+      "file": "ja_v_1_L1.png",
+      "page": "ja_v_1.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "plain",
+      "text": "今夜はラーメンに決めた"
+    },
+    {
+      "file": "ja_v_1_L2.png",
+      "page": "ja_v_1.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "plain",
+      "text": "彼女は静かに首を縦に振った"
+    },
+    {
+      "file": "ja_v_1_L3.png",
+      "page": "ja_v_1.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "plain",
+      "text": "これは運命の出会いかもしれない"
+    },
+    {
+      "file": "ko_h_0_L0.png",
+      "page": "ko_h_0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "plain",
+      "text": "오늘 날씨가 정말 좋네요"
+    },
+    {
+      "file": "ko_h_0_L1.png",
+      "page": "ko_h_0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "plain",
+      "text": "나는 절대 포기하지 않아"
+    },
+    {
+      "file": "ko_h_0_L2.png",
+      "page": "ko_h_0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "plain",
+      "text": "내일 아침 역 앞에서 만나자"
+    },
+    {
+      "file": "ko_h_0_L3.png",
+      "page": "ko_h_0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "plain",
+      "text": "이게 무슨 일이야?"
+    },
+    {
+      "file": "ko_h_1_L0.png",
+      "page": "ko_h_1.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "plain",
+      "text": "이게 무슨 일이야?"
+    },
+    {
+      "file": "ko_h_1_L1.png",
+      "page": "ko_h_1.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "plain",
+      "text": "내일 아침 역 앞에서 만나자"
+    },
+    {
+      "file": "ko_h_1_L2.png",
+      "page": "ko_h_1.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "plain",
+      "text": "나는 절대 포기하지 않아"
+    },
+    {
+      "file": "ko_h_1_L3.png",
+      "page": "ko_h_1.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "plain",
+      "text": "오늘 날씨가 정말 좋네요"
+    },
+    {
+      "file": "ko_v_0_L0.png",
+      "page": "ko_v_0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "plain",
+      "text": "그것은 운명적인 만남일지도 몰라"
+    },
+    {
+      "file": "ko_v_0_L1.png",
+      "page": "ko_v_0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "plain",
+      "text": "그녀는 조용히 고개를 끄덕였다"
+    },
+    {
+      "file": "ko_v_0_L2.png",
+      "page": "ko_v_0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "plain",
+      "text": "그때 하늘에서 빛이 쏟아졌다"
+    },
+    {
+      "file": "ko_v_0_L3.png",
+      "page": "ko_v_0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "plain",
+      "text": "자, 가자. 새로운 세계로"
+    },
+    {
+      "file": "ko_v_1_L0.png",
+      "page": "ko_v_1.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "plain",
+      "text": "자, 가자. 새로운 세계로"
+    },
+    {
+      "file": "ko_v_1_L1.png",
+      "page": "ko_v_1.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "plain",
+      "text": "그때 하늘에서 빛이 쏟아졌다"
+    },
+    {
+      "file": "ko_v_1_L2.png",
+      "page": "ko_v_1.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "plain",
+      "text": "그녀는 조용히 고개를 끄덕였다"
+    },
+    {
+      "file": "ko_v_1_L3.png",
+      "page": "ko_v_1.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "plain",
+      "text": "그것은 운명적인 만남일지도 몰라"
+    },
+    {
+      "file": "en_h_0_L0.png",
+      "page": "en_h_0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "plain",
+      "text": "I will never give up!"
+    },
+    {
+      "file": "en_h_0_L1.png",
+      "page": "en_h_0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "plain",
+      "text": "What time is the meeting today?"
+    },
+    {
+      "file": "en_h_0_L2.png",
+      "page": "en_h_0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "plain",
+      "text": "She quietly nodded her head."
+    },
+    {
+      "file": "en_h_0_L3.png",
+      "page": "en_h_0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "plain",
+      "text": "The sky is the limit, kid."
+    },
+    {
+      "file": "en_h_1_L0.png",
+      "page": "en_h_1.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "plain",
+      "text": "The sky is the limit, kid."
+    },
+    {
+      "file": "en_h_1_L1.png",
+      "page": "en_h_1.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "plain",
+      "text": "She quietly nodded her head."
+    },
+    {
+      "file": "en_h_1_L2.png",
+      "page": "en_h_1.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "plain",
+      "text": "What time is the meeting today?"
+    },
+    {
+      "file": "en_h_1_L3.png",
+      "page": "en_h_1.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "plain",
+      "text": "I will never give up!"
+    },
+    {
+      "file": "en_v_0_L0.png",
+      "page": "en_v_0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "plain",
+      "text": "Don't move! Stay right there!"
+    },
+    {
+      "file": "en_v_0_L1.png",
+      "page": "en_v_0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "plain",
+      "text": "This power is unbelievable..."
+    },
+    {
+      "file": "en_v_0_L2.png",
+      "page": "en_v_0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "plain",
+      "text": "Are you really the chosen one?"
+    },
+    {
+      "file": "en_v_0_L3.png",
+      "page": "en_v_0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "plain",
+      "text": "Let's finish this once and for all."
+    },
+    {
+      "file": "en_v_1_L0.png",
+      "page": "en_v_1.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "plain",
+      "text": "Let's finish this once and for all."
+    },
+    {
+      "file": "en_v_1_L1.png",
+      "page": "en_v_1.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "plain",
+      "text": "Are you really the chosen one?"
+    },
+    {
+      "file": "en_v_1_L2.png",
+      "page": "en_v_1.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "plain",
+      "text": "This power is unbelievable..."
+    },
+    {
+      "file": "en_v_1_L3.png",
+      "page": "en_v_1.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "plain",
+      "text": "Don't move! Stay right there!"
+    },
+    {
+      "file": "ja_h_c0_L0.png",
+      "page": "ja_h_c0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "color",
+      "text": "今日はいい天気だね",
+      "true_fg": [
+        220,
+        60,
+        60
+      ]
+    },
+    {
+      "file": "ja_h_c0_L1.png",
+      "page": "ja_h_c0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "color",
+      "text": "俺は絶対に諦めない",
+      "true_fg": [
+        70,
+        100,
+        225
+      ]
+    },
+    {
+      "file": "ja_h_c0_L2.png",
+      "page": "ja_h_c0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "color",
+      "text": "明日の朝、駅前に集合してください",
+      "true_fg": [
+        235,
+        190,
+        45
+      ]
+    },
+    {
+      "file": "ja_h_c0_L3.png",
+      "page": "ja_h_c0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "color",
+      "text": "これは何ですか？",
+      "true_fg": [
+        235,
+        125,
+        175
+      ]
+    },
+    {
+      "file": "ja_v_c0_L0.png",
+      "page": "ja_v_c0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "color",
+      "text": "これは運命の出会いかもしれない",
+      "true_fg": [
+        220,
+        60,
+        60
+      ]
+    },
+    {
+      "file": "ja_v_c0_L1.png",
+      "page": "ja_v_c0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "color",
+      "text": "彼女は静かに首を縦に振った",
+      "true_fg": [
+        70,
+        100,
+        225
+      ]
+    },
+    {
+      "file": "ja_v_c0_L2.png",
+      "page": "ja_v_c0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "color",
+      "text": "今夜はラーメンに決めた",
+      "true_fg": [
+        235,
+        190,
+        45
+      ]
+    },
+    {
+      "file": "ja_v_c0_L3.png",
+      "page": "ja_v_c0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "color",
+      "text": "その時、空から光が降り注いだ",
+      "true_fg": [
+        235,
+        125,
+        175
+      ]
+    },
+    {
+      "file": "ja_h_d0_L0.png",
+      "page": "ja_h_d0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "dark",
+      "text": "今日はいい天気だね",
+      "true_fg": [
+        242,
+        242,
+        242
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ja_h_d0_L1.png",
+      "page": "ja_h_d0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "dark",
+      "text": "俺は絶対に諦めない",
+      "true_fg": [
+        238,
+        200,
+        85
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ja_h_d0_L2.png",
+      "page": "ja_h_d0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "dark",
+      "text": "明日の朝、駅前に集合してください",
+      "true_fg": [
+        242,
+        242,
+        242
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ja_h_d0_L3.png",
+      "page": "ja_h_d0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "dark",
+      "text": "これは何ですか？",
+      "true_fg": [
+        238,
+        200,
+        85
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ja_v_d0_L0.png",
+      "page": "ja_v_d0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "dark",
+      "text": "これは運命の出会いかもしれない",
+      "true_fg": [
+        242,
+        242,
+        242
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ja_v_d0_L1.png",
+      "page": "ja_v_d0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "dark",
+      "text": "彼女は静かに首を縦に振った",
+      "true_fg": [
+        238,
+        200,
+        85
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ja_v_d0_L2.png",
+      "page": "ja_v_d0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "dark",
+      "text": "今夜はラーメンに決めた",
+      "true_fg": [
+        242,
+        242,
+        242
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ja_v_d0_L3.png",
+      "page": "ja_v_d0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "dark",
+      "text": "その時、空から光が降り注いだ",
+      "true_fg": [
+        238,
+        200,
+        85
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ja_h_o0_L0.png",
+      "page": "ja_h_o0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "outline",
+      "text": "今日はいい天気だね",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "ja_h_o0_L1.png",
+      "page": "ja_h_o0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "outline",
+      "text": "俺は絶対に諦めない",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "ja_h_o0_L2.png",
+      "page": "ja_h_o0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "outline",
+      "text": "明日の朝、駅前に集合してください",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "ja_h_o0_L3.png",
+      "page": "ja_h_o0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "outline",
+      "text": "これは何ですか？",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "ja_v_o0_L0.png",
+      "page": "ja_v_o0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "outline",
+      "text": "これは運命の出会いかもしれない",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "ja_v_o0_L1.png",
+      "page": "ja_v_o0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "outline",
+      "text": "彼女は静かに首を縦に振った",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "ja_v_o0_L2.png",
+      "page": "ja_v_o0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "outline",
+      "text": "今夜はラーメンに決めた",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "ja_v_o0_L3.png",
+      "page": "ja_v_o0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "outline",
+      "text": "その時、空から光が降り注いだ",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "ko_h_c0_L0.png",
+      "page": "ko_h_c0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "color",
+      "text": "오늘 날씨가 정말 좋네요",
+      "true_fg": [
+        220,
+        60,
+        60
+      ]
+    },
+    {
+      "file": "ko_h_c0_L1.png",
+      "page": "ko_h_c0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "color",
+      "text": "나는 절대 포기하지 않아",
+      "true_fg": [
+        70,
+        100,
+        225
+      ]
+    },
+    {
+      "file": "ko_h_c0_L2.png",
+      "page": "ko_h_c0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "color",
+      "text": "내일 아침 역 앞에서 만나자",
+      "true_fg": [
+        235,
+        190,
+        45
+      ]
+    },
+    {
+      "file": "ko_h_c0_L3.png",
+      "page": "ko_h_c0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "color",
+      "text": "이게 무슨 일이야?",
+      "true_fg": [
+        235,
+        125,
+        175
+      ]
+    },
+    {
+      "file": "ko_v_c0_L0.png",
+      "page": "ko_v_c0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "color",
+      "text": "그것은 운명적인 만남일지도 몰라",
+      "true_fg": [
+        220,
+        60,
+        60
+      ]
+    },
+    {
+      "file": "ko_v_c0_L1.png",
+      "page": "ko_v_c0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "color",
+      "text": "그녀는 조용히 고개를 끄덕였다",
+      "true_fg": [
+        70,
+        100,
+        225
+      ]
+    },
+    {
+      "file": "ko_v_c0_L2.png",
+      "page": "ko_v_c0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "color",
+      "text": "그때 하늘에서 빛이 쏟아졌다",
+      "true_fg": [
+        235,
+        190,
+        45
+      ]
+    },
+    {
+      "file": "ko_v_c0_L3.png",
+      "page": "ko_v_c0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "color",
+      "text": "자, 가자. 새로운 세계로",
+      "true_fg": [
+        235,
+        125,
+        175
+      ]
+    },
+    {
+      "file": "ko_h_d0_L0.png",
+      "page": "ko_h_d0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "dark",
+      "text": "오늘 날씨가 정말 좋네요",
+      "true_fg": [
+        242,
+        242,
+        242
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ko_h_d0_L1.png",
+      "page": "ko_h_d0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "dark",
+      "text": "나는 절대 포기하지 않아",
+      "true_fg": [
+        238,
+        200,
+        85
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ko_h_d0_L2.png",
+      "page": "ko_h_d0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "dark",
+      "text": "내일 아침 역 앞에서 만나자",
+      "true_fg": [
+        242,
+        242,
+        242
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ko_h_d0_L3.png",
+      "page": "ko_h_d0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "dark",
+      "text": "이게 무슨 일이야?",
+      "true_fg": [
+        238,
+        200,
+        85
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ko_v_d0_L0.png",
+      "page": "ko_v_d0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "dark",
+      "text": "그것은 운명적인 만남일지도 몰라",
+      "true_fg": [
+        242,
+        242,
+        242
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ko_v_d0_L1.png",
+      "page": "ko_v_d0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "dark",
+      "text": "그녀는 조용히 고개를 끄덕였다",
+      "true_fg": [
+        238,
+        200,
+        85
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ko_v_d0_L2.png",
+      "page": "ko_v_d0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "dark",
+      "text": "그때 하늘에서 빛이 쏟아졌다",
+      "true_fg": [
+        242,
+        242,
+        242
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ko_v_d0_L3.png",
+      "page": "ko_v_d0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "dark",
+      "text": "자, 가자. 새로운 세계로",
+      "true_fg": [
+        238,
+        200,
+        85
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "ko_h_o0_L0.png",
+      "page": "ko_h_o0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "outline",
+      "text": "오늘 날씨가 정말 좋네요",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "ko_h_o0_L1.png",
+      "page": "ko_h_o0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "outline",
+      "text": "나는 절대 포기하지 않아",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "ko_h_o0_L2.png",
+      "page": "ko_h_o0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "outline",
+      "text": "내일 아침 역 앞에서 만나자",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "ko_h_o0_L3.png",
+      "page": "ko_h_o0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "outline",
+      "text": "이게 무슨 일이야?",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "ko_v_o0_L0.png",
+      "page": "ko_v_o0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "outline",
+      "text": "그것은 운명적인 만남일지도 몰라",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "ko_v_o0_L1.png",
+      "page": "ko_v_o0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "outline",
+      "text": "그녀는 조용히 고개를 끄덕였다",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "ko_v_o0_L2.png",
+      "page": "ko_v_o0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "outline",
+      "text": "그때 하늘에서 빛이 쏟아졌다",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "ko_v_o0_L3.png",
+      "page": "ko_v_o0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "outline",
+      "text": "자, 가자. 새로운 세계로",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "en_h_c0_L0.png",
+      "page": "en_h_c0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "color",
+      "text": "I will never give up!",
+      "true_fg": [
+        220,
+        60,
+        60
+      ]
+    },
+    {
+      "file": "en_h_c0_L1.png",
+      "page": "en_h_c0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "color",
+      "text": "What time is the meeting today?",
+      "true_fg": [
+        70,
+        100,
+        225
+      ]
+    },
+    {
+      "file": "en_h_c0_L2.png",
+      "page": "en_h_c0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "color",
+      "text": "She quietly nodded her head.",
+      "true_fg": [
+        235,
+        190,
+        45
+      ]
+    },
+    {
+      "file": "en_h_c0_L3.png",
+      "page": "en_h_c0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "color",
+      "text": "The sky is the limit, kid.",
+      "true_fg": [
+        235,
+        125,
+        175
+      ]
+    },
+    {
+      "file": "en_v_c0_L0.png",
+      "page": "en_v_c0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "color",
+      "text": "Don't move! Stay right there!",
+      "true_fg": [
+        220,
+        60,
+        60
+      ]
+    },
+    {
+      "file": "en_v_c0_L1.png",
+      "page": "en_v_c0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "color",
+      "text": "This power is unbelievable...",
+      "true_fg": [
+        70,
+        100,
+        225
+      ]
+    },
+    {
+      "file": "en_v_c0_L2.png",
+      "page": "en_v_c0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "color",
+      "text": "Are you really the chosen one?",
+      "true_fg": [
+        235,
+        190,
+        45
+      ]
+    },
+    {
+      "file": "en_v_c0_L3.png",
+      "page": "en_v_c0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "color",
+      "text": "Let's finish this once and for all.",
+      "true_fg": [
+        235,
+        125,
+        175
+      ]
+    },
+    {
+      "file": "en_h_d0_L0.png",
+      "page": "en_h_d0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "dark",
+      "text": "I will never give up!",
+      "true_fg": [
+        242,
+        242,
+        242
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "en_h_d0_L1.png",
+      "page": "en_h_d0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "dark",
+      "text": "What time is the meeting today?",
+      "true_fg": [
+        238,
+        200,
+        85
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "en_h_d0_L2.png",
+      "page": "en_h_d0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "dark",
+      "text": "She quietly nodded her head.",
+      "true_fg": [
+        242,
+        242,
+        242
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "en_h_d0_L3.png",
+      "page": "en_h_d0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "dark",
+      "text": "The sky is the limit, kid.",
+      "true_fg": [
+        238,
+        200,
+        85
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "en_v_d0_L0.png",
+      "page": "en_v_d0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "dark",
+      "text": "Don't move! Stay right there!",
+      "true_fg": [
+        242,
+        242,
+        242
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "en_v_d0_L1.png",
+      "page": "en_v_d0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "dark",
+      "text": "This power is unbelievable...",
+      "true_fg": [
+        238,
+        200,
+        85
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "en_v_d0_L2.png",
+      "page": "en_v_d0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "dark",
+      "text": "Are you really the chosen one?",
+      "true_fg": [
+        242,
+        242,
+        242
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "en_v_d0_L3.png",
+      "page": "en_v_d0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "dark",
+      "text": "Let's finish this once and for all.",
+      "true_fg": [
+        238,
+        200,
+        85
+      ],
+      "true_bg": [
+        38,
+        40,
+        52
+      ]
+    },
+    {
+      "file": "en_h_o0_L0.png",
+      "page": "en_h_o0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "outline",
+      "text": "I will never give up!",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "en_h_o0_L1.png",
+      "page": "en_h_o0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "outline",
+      "text": "What time is the meeting today?",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "en_h_o0_L2.png",
+      "page": "en_h_o0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "outline",
+      "text": "She quietly nodded her head.",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "en_h_o0_L3.png",
+      "page": "en_h_o0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "outline",
+      "text": "The sky is the limit, kid.",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "en_v_o0_L0.png",
+      "page": "en_v_o0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "outline",
+      "text": "Don't move! Stay right there!",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "en_v_o0_L1.png",
+      "page": "en_v_o0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "outline",
+      "text": "This power is unbelievable...",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "en_v_o0_L2.png",
+      "page": "en_v_o0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "outline",
+      "text": "Are you really the chosen one?",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    },
+    {
+      "file": "en_v_o0_L3.png",
+      "page": "en_v_o0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "outline",
+      "text": "Let's finish this once and for all.",
+      "true_fg": [
+        248,
+        248,
+        248
+      ],
+      "true_bg": [
+        25,
+        25,
+        25
+      ]
+    }
+  ]
+}

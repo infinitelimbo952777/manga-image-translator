@@ -1,0 +1,1594 @@
+{
+  "pages": [
+    {
+      "file": "ja_h_0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "plain",
+      "text": "今日はいい天気だね\n俺は絶対に諦めない\n明日の朝、駅前に集合してください\nこれは何ですか？",
+      "lines": [
+        {
+          "text": "今日はいい天気だね",
+          "box": [
+            80,
+            91,
+            350,
+            120
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "俺は絶対に諦めない",
+          "box": [
+            80,
+            189,
+            386,
+            221
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "明日の朝、駅前に集合してください",
+          "box": [
+            80,
+            293,
+            688,
+            328
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "これは何ですか？",
+          "box": [
+            80,
+            405,
+            336,
+            434
+          ],
+          "style": "plain",
+          "fg": "black"
+        }
+      ]
+    },
+    {
+      "file": "ja_h_1.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "plain",
+      "text": "これは何ですか？\n明日の朝、駅前に集合してください\n俺は絶対に諦めない\n今日はいい天気だね",
+      "lines": [
+        {
+          "text": "これは何ですか？",
+          "box": [
+            80,
+            91,
+            320,
+            119
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "明日の朝、駅前に集合してください",
+          "box": [
+            80,
+            189,
+            624,
+            221
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "俺は絶対に諦めない",
+          "box": [
+            80,
+            292,
+            422,
+            328
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "今日はいい天気だね",
+          "box": [
+            80,
+            405,
+            368,
+            436
+          ],
+          "style": "plain",
+          "fg": "black"
+        }
+      ]
+    },
+    {
+      "file": "ja_v_0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "plain",
+      "text": "これは運命の出会いかもしれない\n彼女は静かに首を縦に振った\n今夜はラーメンに決めた\nその時、空から光が降り注いだ",
+      "lines": [
+        {
+          "text": "これは運命の出会いかもしれない",
+          "box": [
+            875,
+            70,
+            905,
+            573
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "彼女は静かに首を縦に振った",
+          "box": [
+            806,
+            70,
+            840,
+            558
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "今夜はラーメンに決めた",
+          "box": [
+            732,
+            70,
+            770,
+            525
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "その時、空から光が降り注いだ",
+          "box": [
+            658,
+            70,
+            690,
+            568
+          ],
+          "style": "plain",
+          "fg": "black"
+        }
+      ]
+    },
+    {
+      "file": "ja_v_1.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "plain",
+      "text": "その時、空から光が降り注いだ\n今夜はラーメンに決めた\n彼女は静かに首を縦に振った\nこれは運命の出会いかもしれない",
+      "lines": [
+        {
+          "text": "その時、空から光が降り注いだ",
+          "box": [
+            875,
+            70,
+            905,
+            540
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "今夜はラーメンに決めた",
+          "box": [
+            806,
+            70,
+            840,
+            482
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "彼女は静かに首を縦に振った",
+          "box": [
+            732,
+            70,
+            770,
+            609
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "これは運命の出会いかもしれない",
+          "box": [
+            658,
+            70,
+            690,
+            603
+          ],
+          "style": "plain",
+          "fg": "black"
+        }
+      ]
+    },
+    {
+      "file": "ko_h_0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "plain",
+      "text": "오늘 날씨가 정말 좋네요\n나는 절대 포기하지 않아\n내일 아침 역 앞에서 만나자\n이게 무슨 일이야?",
+      "lines": [
+        {
+          "text": "오늘 날씨가 정말 좋네요",
+          "box": [
+            80,
+            97,
+            413,
+            126
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "나는 절대 포기하지 않아",
+          "box": [
+            80,
+            195,
+            456,
+            227
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "내일 아침 역 앞에서 만나자",
+          "box": [
+            80,
+            301,
+            550,
+            336
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "이게 무슨 일이야?",
+          "box": [
+            80,
+            411,
+            341,
+            441
+          ],
+          "style": "plain",
+          "fg": "black"
+        }
+      ]
+    },
+    {
+      "file": "ko_h_1.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "plain",
+      "text": "이게 무슨 일이야?\n내일 아침 역 앞에서 만나자\n나는 절대 포기하지 않아\n오늘 날씨가 정말 좋네요",
+      "lines": [
+        {
+          "text": "이게 무슨 일이야?",
+          "box": [
+            80,
+            97,
+            326,
+            126
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "내일 아침 역 앞에서 만나자",
+          "box": [
+            80,
+            195,
+            502,
+            227
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "나는 절대 포기하지 않아",
+          "box": [
+            80,
+            301,
+            499,
+            336
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "오늘 날씨가 정말 좋네요",
+          "box": [
+            80,
+            411,
+            433,
+            441
+          ],
+          "style": "plain",
+          "fg": "black"
+        }
+      ]
+    },
+    {
+      "file": "ko_v_0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "plain",
+      "text": "그것은 운명적인 만남일지도 몰라\n그녀는 조용히 고개를 끄덕였다\n그때 하늘에서 빛이 쏟아졌다\n자, 가자. 새로운 세계로",
+      "lines": [
+        {
+          "text": "그것은 운명적인 만남일지도 몰라",
+          "box": [
+            875,
+            70,
+            905,
+            650
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "그녀는 조용히 고개를 끄덕였다",
+          "box": [
+            806,
+            70,
+            840,
+            680
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "그때 하늘에서 빛이 쏟아졌다",
+          "box": [
+            732,
+            70,
+            770,
+            703
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "자, 가자. 새로운 세계로",
+          "box": [
+            658,
+            70,
+            690,
+            573
+          ],
+          "style": "plain",
+          "fg": "black"
+        }
+      ]
+    },
+    {
+      "file": "ko_v_1.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "plain",
+      "text": "자, 가자. 새로운 세계로\n그때 하늘에서 빛이 쏟아졌다\n그녀는 조용히 고개를 끄덕였다\n그것은 운명적인 만남일지도 몰라",
+      "lines": [
+        {
+          "text": "자, 가자. 새로운 세계로",
+          "box": [
+            875,
+            70,
+            905,
+            545
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "그때 하늘에서 빛이 쏟아졌다",
+          "box": [
+            806,
+            70,
+            840,
+            642
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "그녀는 조용히 고개를 끄덕였다",
+          "box": [
+            732,
+            70,
+            770,
+            745
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "그것은 운명적인 만남일지도 몰라",
+          "box": [
+            658,
+            70,
+            690,
+            684
+          ],
+          "style": "plain",
+          "fg": "black"
+        }
+      ]
+    },
+    {
+      "file": "en_h_0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "plain",
+      "text": "I will never give up!\nWhat time is the meeting today?\nShe quietly nodded her head.\nThe sky is the limit, kid.",
+      "lines": [
+        {
+          "text": "I will never give up!",
+          "box": [
+            80,
+            96,
+            337,
+            124
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "What time is the meeting today?",
+          "box": [
+            80,
+            193,
+            563,
+            225
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "She quietly nodded her head.",
+          "box": [
+            80,
+            299,
+            576,
+            334
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "The sky is the limit, kid.",
+          "box": [
+            80,
+            409,
+            413,
+            438
+          ],
+          "style": "plain",
+          "fg": "black"
+        }
+      ]
+    },
+    {
+      "file": "en_h_1.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "plain",
+      "text": "The sky is the limit, kid.\nShe quietly nodded her head.\nWhat time is the meeting today?\nI will never give up!",
+      "lines": [
+        {
+          "text": "The sky is the limit, kid.",
+          "box": [
+            80,
+            96,
+            390,
+            124
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "She quietly nodded her head.",
+          "box": [
+            80,
+            193,
+            524,
+            225
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "What time is the meeting today?",
+          "box": [
+            80,
+            299,
+            625,
+            334
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "I will never give up!",
+          "box": [
+            80,
+            409,
+            354,
+            438
+          ],
+          "style": "plain",
+          "fg": "black"
+        }
+      ]
+    },
+    {
+      "file": "en_v_0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "plain",
+      "text": "Don't move! Stay right there!\nThis power is unbelievable...\nAre you really the chosen one?\nLet's finish this once and for all.",
+      "lines": [
+        {
+          "text": "Don't move! Stay right there!",
+          "box": [
+            877,
+            70,
+            902,
+            1050
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "This power is unbelievable...",
+          "box": [
+            810,
+            70,
+            835,
+            1165
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "Are you really the chosen one?",
+          "box": [
+            737,
+            70,
+            764,
+            1323
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "Let's finish this once and for all.",
+          "box": [
+            665,
+            70,
+            683,
+            1323
+          ],
+          "style": "plain",
+          "fg": "black"
+        }
+      ]
+    },
+    {
+      "file": "en_v_1.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "plain",
+      "text": "Let's finish this once and for all.\nAre you really the chosen one?\nThis power is unbelievable...\nDon't move! Stay right there!",
+      "lines": [
+        {
+          "text": "Let's finish this once and for all.",
+          "box": [
+            881,
+            70,
+            898,
+            1254
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "Are you really the chosen one?",
+          "box": [
+            810,
+            70,
+            834,
+            1203
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "This power is unbelievable...",
+          "box": [
+            737,
+            70,
+            765,
+            1281
+          ],
+          "style": "plain",
+          "fg": "black"
+        },
+        {
+          "text": "Don't move! Stay right there!",
+          "box": [
+            660,
+            70,
+            687,
+            1107
+          ],
+          "style": "plain",
+          "fg": "black"
+        }
+      ]
+    },
+    {
+      "file": "ja_h_c0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "color",
+      "text": "今日はいい天気だね\n俺は絶対に諦めない\n明日の朝、駅前に集合してください\nこれは何ですか？",
+      "lines": [
+        {
+          "text": "今日はいい天気だね",
+          "box": [
+            80,
+            91,
+            350,
+            120
+          ],
+          "style": "color",
+          "fg": "red"
+        },
+        {
+          "text": "俺は絶対に諦めない",
+          "box": [
+            80,
+            189,
+            386,
+            221
+          ],
+          "style": "color",
+          "fg": "blue"
+        },
+        {
+          "text": "明日の朝、駅前に集合してください",
+          "box": [
+            80,
+            293,
+            688,
+            328
+          ],
+          "style": "color",
+          "fg": "yellow"
+        },
+        {
+          "text": "これは何ですか？",
+          "box": [
+            80,
+            405,
+            336,
+            434
+          ],
+          "style": "color",
+          "fg": "pink"
+        }
+      ]
+    },
+    {
+      "file": "ja_v_c0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "color",
+      "text": "これは運命の出会いかもしれない\n彼女は静かに首を縦に振った\n今夜はラーメンに決めた\nその時、空から光が降り注いだ",
+      "lines": [
+        {
+          "text": "これは運命の出会いかもしれない",
+          "box": [
+            875,
+            70,
+            905,
+            573
+          ],
+          "style": "color",
+          "fg": "red"
+        },
+        {
+          "text": "彼女は静かに首を縦に振った",
+          "box": [
+            806,
+            70,
+            840,
+            558
+          ],
+          "style": "color",
+          "fg": "blue"
+        },
+        {
+          "text": "今夜はラーメンに決めた",
+          "box": [
+            732,
+            70,
+            770,
+            525
+          ],
+          "style": "color",
+          "fg": "yellow"
+        },
+        {
+          "text": "その時、空から光が降り注いだ",
+          "box": [
+            658,
+            70,
+            690,
+            568
+          ],
+          "style": "color",
+          "fg": "pink"
+        }
+      ]
+    },
+    {
+      "file": "ja_h_d0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "dark",
+      "text": "今日はいい天気だね\n俺は絶対に諦めない\n明日の朝、駅前に集合してください\nこれは何ですか？",
+      "lines": [
+        {
+          "text": "今日はいい天気だね",
+          "box": [
+            80,
+            91,
+            350,
+            120
+          ],
+          "style": "dark",
+          "fg": "white"
+        },
+        {
+          "text": "俺は絶対に諦めない",
+          "box": [
+            80,
+            189,
+            386,
+            221
+          ],
+          "style": "dark",
+          "fg": "gold"
+        },
+        {
+          "text": "明日の朝、駅前に集合してください",
+          "box": [
+            80,
+            293,
+            688,
+            328
+          ],
+          "style": "dark",
+          "fg": "white"
+        },
+        {
+          "text": "これは何ですか？",
+          "box": [
+            80,
+            405,
+            336,
+            434
+          ],
+          "style": "dark",
+          "fg": "gold"
+        }
+      ]
+    },
+    {
+      "file": "ja_v_d0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "dark",
+      "text": "これは運命の出会いかもしれない\n彼女は静かに首を縦に振った\n今夜はラーメンに決めた\nその時、空から光が降り注いだ",
+      "lines": [
+        {
+          "text": "これは運命の出会いかもしれない",
+          "box": [
+            875,
+            70,
+            905,
+            573
+          ],
+          "style": "dark",
+          "fg": "white"
+        },
+        {
+          "text": "彼女は静かに首を縦に振った",
+          "box": [
+            806,
+            70,
+            840,
+            558
+          ],
+          "style": "dark",
+          "fg": "gold"
+        },
+        {
+          "text": "今夜はラーメンに決めた",
+          "box": [
+            732,
+            70,
+            770,
+            525
+          ],
+          "style": "dark",
+          "fg": "white"
+        },
+        {
+          "text": "その時、空から光が降り注いだ",
+          "box": [
+            658,
+            70,
+            690,
+            568
+          ],
+          "style": "dark",
+          "fg": "gold"
+        }
+      ]
+    },
+    {
+      "file": "ja_h_o0.png",
+      "lang": "ja",
+      "orient": "h",
+      "style": "outline",
+      "text": "今日はいい天気だね\n俺は絶対に諦めない\n明日の朝、駅前に集合してください\nこれは何ですか？",
+      "lines": [
+        {
+          "text": "今日はいい天気だね",
+          "box": [
+            78,
+            89,
+            352,
+            122
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "俺は絶対に諦めない",
+          "box": [
+            78,
+            187,
+            388,
+            223
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "明日の朝、駅前に集合してください",
+          "box": [
+            78,
+            291,
+            690,
+            330
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "これは何ですか？",
+          "box": [
+            78,
+            403,
+            338,
+            436
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        }
+      ]
+    },
+    {
+      "file": "ja_v_o0.png",
+      "lang": "ja",
+      "orient": "v",
+      "style": "outline",
+      "text": "これは運命の出会いかもしれない\n彼女は静かに首を縦に振った\n今夜はラーメンに決めた\nその時、空から光が降り注いだ",
+      "lines": [
+        {
+          "text": "これは運命の出会いかもしれない",
+          "box": [
+            873,
+            70,
+            907,
+            575
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "彼女は静かに首を縦に振った",
+          "box": [
+            804,
+            70,
+            842,
+            560
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "今夜はラーメンに決めた",
+          "box": [
+            730,
+            70,
+            772,
+            527
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "その時、空から光が降り注いだ",
+          "box": [
+            656,
+            70,
+            692,
+            570
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        }
+      ]
+    },
+    {
+      "file": "ko_h_c0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "color",
+      "text": "오늘 날씨가 정말 좋네요\n나는 절대 포기하지 않아\n내일 아침 역 앞에서 만나자\n이게 무슨 일이야?",
+      "lines": [
+        {
+          "text": "오늘 날씨가 정말 좋네요",
+          "box": [
+            80,
+            97,
+            413,
+            126
+          ],
+          "style": "color",
+          "fg": "red"
+        },
+        {
+          "text": "나는 절대 포기하지 않아",
+          "box": [
+            80,
+            195,
+            456,
+            227
+          ],
+          "style": "color",
+          "fg": "blue"
+        },
+        {
+          "text": "내일 아침 역 앞에서 만나자",
+          "box": [
+            80,
+            301,
+            550,
+            336
+          ],
+          "style": "color",
+          "fg": "yellow"
+        },
+        {
+          "text": "이게 무슨 일이야?",
+          "box": [
+            80,
+            411,
+            341,
+            441
+          ],
+          "style": "color",
+          "fg": "pink"
+        }
+      ]
+    },
+    {
+      "file": "ko_v_c0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "color",
+      "text": "그것은 운명적인 만남일지도 몰라\n그녀는 조용히 고개를 끄덕였다\n그때 하늘에서 빛이 쏟아졌다\n자, 가자. 새로운 세계로",
+      "lines": [
+        {
+          "text": "그것은 운명적인 만남일지도 몰라",
+          "box": [
+            875,
+            70,
+            905,
+            650
+          ],
+          "style": "color",
+          "fg": "red"
+        },
+        {
+          "text": "그녀는 조용히 고개를 끄덕였다",
+          "box": [
+            806,
+            70,
+            840,
+            680
+          ],
+          "style": "color",
+          "fg": "blue"
+        },
+        {
+          "text": "그때 하늘에서 빛이 쏟아졌다",
+          "box": [
+            732,
+            70,
+            770,
+            703
+          ],
+          "style": "color",
+          "fg": "yellow"
+        },
+        {
+          "text": "자, 가자. 새로운 세계로",
+          "box": [
+            658,
+            70,
+            690,
+            573
+          ],
+          "style": "color",
+          "fg": "pink"
+        }
+      ]
+    },
+    {
+      "file": "ko_h_d0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "dark",
+      "text": "오늘 날씨가 정말 좋네요\n나는 절대 포기하지 않아\n내일 아침 역 앞에서 만나자\n이게 무슨 일이야?",
+      "lines": [
+        {
+          "text": "오늘 날씨가 정말 좋네요",
+          "box": [
+            80,
+            97,
+            413,
+            126
+          ],
+          "style": "dark",
+          "fg": "white"
+        },
+        {
+          "text": "나는 절대 포기하지 않아",
+          "box": [
+            80,
+            195,
+            456,
+            227
+          ],
+          "style": "dark",
+          "fg": "gold"
+        },
+        {
+          "text": "내일 아침 역 앞에서 만나자",
+          "box": [
+            80,
+            301,
+            550,
+            336
+          ],
+          "style": "dark",
+          "fg": "white"
+        },
+        {
+          "text": "이게 무슨 일이야?",
+          "box": [
+            80,
+            411,
+            341,
+            441
+          ],
+          "style": "dark",
+          "fg": "gold"
+        }
+      ]
+    },
+    {
+      "file": "ko_v_d0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "dark",
+      "text": "그것은 운명적인 만남일지도 몰라\n그녀는 조용히 고개를 끄덕였다\n그때 하늘에서 빛이 쏟아졌다\n자, 가자. 새로운 세계로",
+      "lines": [
+        {
+          "text": "그것은 운명적인 만남일지도 몰라",
+          "box": [
+            875,
+            70,
+            905,
+            650
+          ],
+          "style": "dark",
+          "fg": "white"
+        },
+        {
+          "text": "그녀는 조용히 고개를 끄덕였다",
+          "box": [
+            806,
+            70,
+            840,
+            680
+          ],
+          "style": "dark",
+          "fg": "gold"
+        },
+        {
+          "text": "그때 하늘에서 빛이 쏟아졌다",
+          "box": [
+            732,
+            70,
+            770,
+            703
+          ],
+          "style": "dark",
+          "fg": "white"
+        },
+        {
+          "text": "자, 가자. 새로운 세계로",
+          "box": [
+            658,
+            70,
+            690,
+            573
+          ],
+          "style": "dark",
+          "fg": "gold"
+        }
+      ]
+    },
+    {
+      "file": "ko_h_o0.png",
+      "lang": "ko",
+      "orient": "h",
+      "style": "outline",
+      "text": "오늘 날씨가 정말 좋네요\n나는 절대 포기하지 않아\n내일 아침 역 앞에서 만나자\n이게 무슨 일이야?",
+      "lines": [
+        {
+          "text": "오늘 날씨가 정말 좋네요",
+          "box": [
+            78,
+            95,
+            415,
+            128
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "나는 절대 포기하지 않아",
+          "box": [
+            78,
+            193,
+            458,
+            229
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "내일 아침 역 앞에서 만나자",
+          "box": [
+            78,
+            299,
+            552,
+            338
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "이게 무슨 일이야?",
+          "box": [
+            78,
+            409,
+            343,
+            443
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        }
+      ]
+    },
+    {
+      "file": "ko_v_o0.png",
+      "lang": "ko",
+      "orient": "v",
+      "style": "outline",
+      "text": "그것은 운명적인 만남일지도 몰라\n그녀는 조용히 고개를 끄덕였다\n그때 하늘에서 빛이 쏟아졌다\n자, 가자. 새로운 세계로",
+      "lines": [
+        {
+          "text": "그것은 운명적인 만남일지도 몰라",
+          "box": [
+            873,
+            70,
+            907,
+            652
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "그녀는 조용히 고개를 끄덕였다",
+          "box": [
+            804,
+            70,
+            842,
+            682
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "그때 하늘에서 빛이 쏟아졌다",
+          "box": [
+            730,
+            70,
+            772,
+            705
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "자, 가자. 새로운 세계로",
+          "box": [
+            656,
+            70,
+            692,
+            575
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        }
+      ]
+    },
+    {
+      "file": "en_h_c0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "color",
+      "text": "I will never give up!\nWhat time is the meeting today?\nShe quietly nodded her head.\nThe sky is the limit, kid.",
+      "lines": [
+        {
+          "text": "I will never give up!",
+          "box": [
+            80,
+            96,
+            337,
+            124
+          ],
+          "style": "color",
+          "fg": "red"
+        },
+        {
+          "text": "What time is the meeting today?",
+          "box": [
+            80,
+            193,
+            563,
+            225
+          ],
+          "style": "color",
+          "fg": "blue"
+        },
+        {
+          "text": "She quietly nodded her head.",
+          "box": [
+            80,
+            299,
+            576,
+            334
+          ],
+          "style": "color",
+          "fg": "yellow"
+        },
+        {
+          "text": "The sky is the limit, kid.",
+          "box": [
+            80,
+            409,
+            413,
+            438
+          ],
+          "style": "color",
+          "fg": "pink"
+        }
+      ]
+    },
+    {
+      "file": "en_v_c0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "color",
+      "text": "Don't move! Stay right there!\nThis power is unbelievable...\nAre you really the chosen one?\nLet's finish this once and for all.",
+      "lines": [
+        {
+          "text": "Don't move! Stay right there!",
+          "box": [
+            877,
+            70,
+            902,
+            1050
+          ],
+          "style": "color",
+          "fg": "red"
+        },
+        {
+          "text": "This power is unbelievable...",
+          "box": [
+            810,
+            70,
+            835,
+            1165
+          ],
+          "style": "color",
+          "fg": "blue"
+        },
+        {
+          "text": "Are you really the chosen one?",
+          "box": [
+            737,
+            70,
+            764,
+            1323
+          ],
+          "style": "color",
+          "fg": "yellow"
+        },
+        {
+          "text": "Let's finish this once and for all.",
+          "box": [
+            665,
+            70,
+            683,
+            1323
+          ],
+          "style": "color",
+          "fg": "pink"
+        }
+      ]
+    },
+    {
+      "file": "en_h_d0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "dark",
+      "text": "I will never give up!\nWhat time is the meeting today?\nShe quietly nodded her head.\nThe sky is the limit, kid.",
+      "lines": [
+        {
+          "text": "I will never give up!",
+          "box": [
+            80,
+            96,
+            337,
+            124
+          ],
+          "style": "dark",
+          "fg": "white"
+        },
+        {
+          "text": "What time is the meeting today?",
+          "box": [
+            80,
+            193,
+            563,
+            225
+          ],
+          "style": "dark",
+          "fg": "gold"
+        },
+        {
+          "text": "She quietly nodded her head.",
+          "box": [
+            80,
+            299,
+            576,
+            334
+          ],
+          "style": "dark",
+          "fg": "white"
+        },
+        {
+          "text": "The sky is the limit, kid.",
+          "box": [
+            80,
+            409,
+            413,
+            438
+          ],
+          "style": "dark",
+          "fg": "gold"
+        }
+      ]
+    },
+    {
+      "file": "en_v_d0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "dark",
+      "text": "Don't move! Stay right there!\nThis power is unbelievable...\nAre you really the chosen one?\nLet's finish this once and for all.",
+      "lines": [
+        {
+          "text": "Don't move! Stay right there!",
+          "box": [
+            877,
+            70,
+            902,
+            1050
+          ],
+          "style": "dark",
+          "fg": "white"
+        },
+        {
+          "text": "This power is unbelievable...",
+          "box": [
+            810,
+            70,
+            835,
+            1165
+          ],
+          "style": "dark",
+          "fg": "gold"
+        },
+        {
+          "text": "Are you really the chosen one?",
+          "box": [
+            737,
+            70,
+            764,
+            1323
+          ],
+          "style": "dark",
+          "fg": "white"
+        },
+        {
+          "text": "Let's finish this once and for all.",
+          "box": [
+            665,
+            70,
+            683,
+            1323
+          ],
+          "style": "dark",
+          "fg": "gold"
+        }
+      ]
+    },
+    {
+      "file": "en_h_o0.png",
+      "lang": "en",
+      "orient": "h",
+      "style": "outline",
+      "text": "I will never give up!\nWhat time is the meeting today?\nShe quietly nodded her head.\nThe sky is the limit, kid.",
+      "lines": [
+        {
+          "text": "I will never give up!",
+          "box": [
+            78,
+            94,
+            339,
+            126
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "What time is the meeting today?",
+          "box": [
+            78,
+            191,
+            565,
+            227
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "She quietly nodded her head.",
+          "box": [
+            78,
+            297,
+            578,
+            336
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "The sky is the limit, kid.",
+          "box": [
+            78,
+            407,
+            415,
+            440
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        }
+      ]
+    },
+    {
+      "file": "en_v_o0.png",
+      "lang": "en",
+      "orient": "v",
+      "style": "outline",
+      "text": "Don't move! Stay right there!\nThis power is unbelievable...\nAre you really the chosen one?\nLet's finish this once and for all.",
+      "lines": [
+        {
+          "text": "Don't move! Stay right there!",
+          "box": [
+            875,
+            70,
+            904,
+            1052
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "This power is unbelievable...",
+          "box": [
+            808,
+            70,
+            837,
+            1167
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "Are you really the chosen one?",
+          "box": [
+            735,
+            70,
+            766,
+            1325
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        },
+        {
+          "text": "Let's finish this once and for all.",
+          "box": [
+            663,
+            70,
+            685,
+            1325
+          ],
+          "style": "outline",
+          "fg": "white+black_stroke"
+        }
+      ]
+    }
+  ]
+}
