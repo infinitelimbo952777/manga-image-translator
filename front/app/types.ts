@@ -117,6 +117,8 @@ export interface TranslationSettings {
   detAutoRotate: boolean;
   /** 批量翻译时同时请求的图片数(web 模式下 --batch-size 的等价物) */
   concurrency: number;
+  /** 渲染字号偏移(像素),正数放大 */
+  fontOffset: number;
 }
 
 export interface FinishedImage {

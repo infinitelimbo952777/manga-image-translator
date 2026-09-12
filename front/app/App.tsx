@@ -54,6 +54,8 @@ export const App: React.FC = () => {
   const [detRotate, setDetRotate] = useState(false);
   const [detAutoRotate, setDetAutoRotate] = useState(true);
   const [concurrency, setConcurrency] = useState(DEFAULT_CONCURRENCY);
+  // 渲染字号偏移:该字体竖排步进/墨迹偏小,+3 约等于原漫画字号
+  const [fontOffset, setFontOffset] = useState(3);
 
   // Computed State (useMemo)
   const isProcessing = useMemo(() => {
@@ -95,6 +97,7 @@ export const App: React.FC = () => {
     if (savedSettings.detRotate !== undefined) setDetRotate(savedSettings.detRotate);
     if (savedSettings.detAutoRotate !== undefined) setDetAutoRotate(savedSettings.detAutoRotate);
     if (savedSettings.concurrency) setConcurrency(savedSettings.concurrency);
+    if (savedSettings.fontOffset !== undefined) setFontOffset(savedSettings.fontOffset);
 
     // 清理旧版本遗留的坏数据(见 clearLegacyFinishedImages 注释)
     clearLegacyFinishedImages();
@@ -117,6 +120,7 @@ export const App: React.FC = () => {
       detRotate,
       detAutoRotate,
       concurrency,
+      fontOffset,
     }),
     [
       detectionResolution,
@@ -133,6 +137,7 @@ export const App: React.FC = () => {
       detRotate,
       detAutoRotate,
       concurrency,
+      fontOffset,
     ]
   );
 
@@ -237,6 +242,7 @@ export const App: React.FC = () => {
       },
       render: {
         direction: renderTextDirection,
+        font_size_offset: fontOffset,
       },
       translator: {
         translator: translator,
@@ -473,6 +479,7 @@ export const App: React.FC = () => {
             detRotate={detRotate}
             detAutoRotate={detAutoRotate}
             concurrency={concurrency}
+            fontOffset={fontOffset}
             setDetectionResolution={setDetectionResolution}
             setTextDetector={setTextDetector}
             setRenderTextDirection={setRenderTextDirection}
@@ -487,6 +494,7 @@ export const App: React.FC = () => {
             setDetRotate={setDetRotate}
             setDetAutoRotate={setDetAutoRotate}
             setConcurrency={setConcurrency}
+            setFontOffset={setFontOffset}
           />
 
           {/* Main Image Handling Area */}

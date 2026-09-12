@@ -161,7 +161,7 @@ class RenderConfig(BaseModel):
     """Disable font border"""
     adaptive_bg_color: bool = True
     """Sample the glyph stroke color from the actual inpainted background under each text region, so the outline blends with the background instead of snapping to pure black/white when the detected color is off. Falls back to black/white only when the text color is too close to the background to stay readable."""
-    font_size_offset: int = 0
+    font_size_offset: int = 3
     """Offset font size by a given amount, positive number increase font size and vice versa"""
     font_size_minimum: int = -1
     """Minimum output font size. Default is image_sides_sum/200"""

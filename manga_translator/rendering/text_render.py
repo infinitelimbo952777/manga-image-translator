@@ -312,7 +312,10 @@ def calc_vertical(font_size: int, text: str, max_height: int):
         if bitmap.rows * bitmap.width == 0 or len(bitmap.buffer) != bitmap.rows * bitmap.width:
             char_offset_y = ckpt.metrics.vertBearingY >> 6
         else:
-            char_offset_y = ckpt.metrics.vertAdvance >> 6
+            # FreeType reports vertAdvance slightly below the em size for some
+            # fonts (e.g. 0.93em for Arial Unicode); clamping to >= 1em keeps
+            # vertical glyphs from colliding with their strokes
+            char_offset_y = max(ckpt.metrics.vertAdvance >> 6, font_size)
         char_width = bitmap.width
         char_bearing_x = ckpt.metrics.vertBearingX >> 6
         if line_height + char_offset_y > max_height:
@@ -381,8 +384,8 @@ def put_char_vertical(font_size: int, cdpt: str, pen_l: Tuple[int, int], canvas_
 
         # 优先使用 vertAdvance (这是最适合垂直布局的)  
         # Prefer to use vertAdvance (this is most suitable for vertical layout)  
-        if hasattr(slot, 'metrics') and hasattr(slot.metrics, 'vertAdvance') and slot.metrics.vertAdvance:  
-             char_offset_y = slot.metrics.vertAdvance >> 6  
+        if hasattr(slot, 'metrics') and hasattr(slot.metrics, 'vertAdvance') and slot.metrics.vertAdvance:
+             char_offset_y = max(slot.metrics.vertAdvance >> 6, font_size)
         # 其次尝试 advance.y (理论上 vertAdvance 更可靠)  
         # Then try advance.y (theoretically vertAdvance is more reliable)  
         elif hasattr(slot, 'advance') and slot.advance.y:  
@@ -400,10 +403,10 @@ def put_char_vertical(font_size: int, cdpt: str, pen_l: Tuple[int, int], canvas_
         # For whitespace characters, just return the vertical advance  
         return char_offset_y  
 
-    # --- 对于有效位图，正常处理 / For valid bitmaps, process normally ---  
-    # 这里的 char_offset_y 应该是最终的垂直步进  
-    # Here char_offset_y should be the final vertical advance  
-    char_offset_y = slot.metrics.vertAdvance >> 6  
+    # --- 对于有效位图，正常处理 / For valid bitmaps, process normally ---
+    # 这里的 char_offset_y 应该是最终的垂直步进
+    # Here char_offset_y should be the final vertical advance
+    char_offset_y = max(slot.metrics.vertAdvance >> 6, font_size)
 
     # 将位图缓冲区转换为NumPy数组  
     # Convert bitmap buffer to NumPy array  

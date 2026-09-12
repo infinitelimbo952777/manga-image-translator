@@ -29,6 +29,7 @@ type Props = {
   detRotate: boolean;
   detAutoRotate: boolean;
   concurrency: number;
+  fontOffset: number;
 
   setDetectionResolution: (val: string) => void;
   setTextDetector: (val: string) => void;
@@ -44,6 +45,7 @@ type Props = {
   setDetRotate: (val: boolean) => void;
   setDetAutoRotate: (val: boolean) => void;
   setConcurrency: (val: number) => void;
+  setFontOffset: (val: number) => void;
 };
 
 export const OptionsPanel: React.FC<Props> = ({
@@ -61,6 +63,7 @@ export const OptionsPanel: React.FC<Props> = ({
   detRotate,
   detAutoRotate,
   concurrency,
+  fontOffset,
   setDetectionResolution,
   setTextDetector,
   setRenderTextDirection,
@@ -75,6 +78,7 @@ export const OptionsPanel: React.FC<Props> = ({
   setDetRotate,
   setDetAutoRotate,
   setConcurrency,
+  setFontOffset,
 }) => {
   return (
     <>
@@ -237,6 +241,17 @@ export const OptionsPanel: React.FC<Props> = ({
           value={ocrModel}
           onChange={setOcrModel}
           options={ocrModelOptions}
+        />
+
+        {/* Font size offset */}
+        <LabeledInput
+          id="fontOffset"
+          label="字体大小偏移"
+          icon="carbon:text-font"
+          title="译文渲染字号相对原文字号的偏移(像素)。译文偏小时调大"
+          step={1}
+          value={fontOffset}
+          onChange={setFontOffset}
         />
 
         {/* Concurrency */}
