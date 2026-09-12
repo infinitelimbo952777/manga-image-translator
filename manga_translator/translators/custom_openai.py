@@ -118,7 +118,7 @@ class CustomOpenAiTranslator(ConfigGPT, CommonTranslator):
                 prompt,
             ])
 
-    async def _translate(self, from_lang: str, to_lang: str, queries: List[str]) -> List[str]:
+    async def _translate(self, from_lang: str, to_lang: str, queries: List[str], allow_retry: bool = True) -> List[str]:
         translations = []
         self.logger.debug(f'Temperature: {self.temperature}, TopP: {self.top_p}')
 
@@ -204,6 +204,19 @@ class CustomOpenAiTranslator(ConfigGPT, CommonTranslator):
                 new_translations = new_translations + [''] * (query_size - len(new_translations))
 
             translations.extend([t.strip() for t in new_translations])
+
+        # LLMs sometimes drop lines when translating several queries in one
+        # prompt (common with vertical-text columns). Missing lines get padded
+        # with '' above, which the renderer then skips entirely - retry those
+        # regions one by one, single-line requests are far more reliable.
+        if allow_retry:
+            for idx, t in enumerate(translations):
+                if not t and queries[idx].strip():
+                    self.logger.warning(
+                        f'Translation for region {idx + 1} came back empty, retrying individually...'
+                    )
+                    retry = await self._translate(from_lang, to_lang, [queries[idx]], allow_retry=False)
+                    translations[idx] = retry[0] if retry else ''
 
         for t in translations:
             if "I'm sorry, but I can't assist with that request" in t:
