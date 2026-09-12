@@ -33,18 +33,20 @@ async def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--image", default=DEFAULT_IMAGE)
     ap.add_argument("--engines", default="48px,mocr,hayai,paddle")
+    ap.add_argument("--det-size", type=int, default=1536)
+    ap.add_argument("--auto-rotate", action="store_true")
     args = ap.parse_args()
 
     img = Image.open(args.image).convert("RGB")
     rgb = np.asarray(img)
-    print(f"image: {args.image} {img.size} device={DEVICE}")
+    print(f"image: {args.image} {img.size} device={DEVICE} det_size={args.det_size} auto_rotate={args.auto_rotate}")
 
     from manga_translator.detection import dispatch as det_dispatch
     from manga_translator.config import Detector
     res = await det_dispatch(
-        Detector.ctd, rgb, detect_size=1536, text_threshold=0.5,
+        Detector.ctd, rgb, detect_size=args.det_size, text_threshold=0.5,
         box_threshold=0.7, unclip_ratio=1.6, invert=False,
-        gamma_correct=False, rotate=False, auto_rotate=False,
+        gamma_correct=False, rotate=False, auto_rotate=args.auto_rotate,
         device=DEVICE, verbose=False)
     quads = res[0] if isinstance(res, tuple) else res
     print(f"CTD detected {len(quads)} lines")

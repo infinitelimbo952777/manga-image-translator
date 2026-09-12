@@ -367,12 +367,13 @@ export const App: React.FC = () => {
 
   // Helper to reset file statuses
   const resetFileStatuses = (forIds?: string[]) => {
-    // Initialize status for all files
+    // Initialize status for all files;"upload" 让总进度条与状态立即可见,
+    // 否则点击翻译后到后端首个事件之间 UI 完全无反馈
     const newStatuses = new Map();
     entries.forEach((entry) => {
       if (forIds && !forIds.includes(entry.id)) return;
       newStatuses.set(entry.id, {
-        status: null,
+        status: "upload",
         progress: null,
         queuePos: null,
         result: null,

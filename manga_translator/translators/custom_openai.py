@@ -209,14 +209,25 @@ class CustomOpenAiTranslator(ConfigGPT, CommonTranslator):
         # prompt (common with vertical-text columns). Missing lines get padded
         # with '' above, which the renderer then skips entirely - retry those
         # regions one by one, single-line requests are far more reliable.
+        # The same applies to echo-backs: the LLM returns the source text
+        # unchanged, and the pipeline filter would silently drop the whole
+        # region afterwards, leaving untranslated text in the output.
         if allow_retry:
             for idx, t in enumerate(translations):
-                if not t and queries[idx].strip():
-                    self.logger.warning(
-                        f'Translation for region {idx + 1} came back empty, retrying individually...'
-                    )
+                query = queries[idx].strip()
+                identical = (t.strip().lower() == query.lower() and bool(query))
+                if not t or identical:
+                    if identical:
+                        self.logger.warning(
+                            f'Translation for region {idx + 1} is identical to the source text, retrying individually...'
+                        )
+                    else:
+                        self.logger.warning(
+                            f'Translation for region {idx + 1} came back empty, retrying individually...'
+                        )
                     retry = await self._translate(from_lang, to_lang, [queries[idx]], allow_retry=False)
-                    translations[idx] = retry[0] if retry else ''
+                    if retry and retry[0]:
+                        translations[idx] = retry[0]
 
         for t in translations:
             if "I'm sorry, but I can't assist with that request" in t:

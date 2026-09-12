@@ -420,7 +420,8 @@ export const ImageHandlingArea: React.FC<ImageHandlingAreaProps> = ({
         </div>
       )}
       {/* 总体进度:总览/文件夹视图都只显示汇总 */}
-      {entries.length > 0 && (isProcessing || isProcessingAllFinished) && (
+      {entries.length > 0 &&
+        (isProcessing || isProcessingAllFinished || doneCount > 0) && (
         <div className="px-2">
           <div className="flex justify-between text-sm text-gray-600 mb-1">
             <span>
