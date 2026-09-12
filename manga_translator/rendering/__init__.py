@@ -20,6 +20,16 @@ from ..utils import (
 
 logger = get_logger('render')
 
+# OpenCV warpPerspective/remap 硬限制：画布每维必须 < SHRT_MAX(32767)，
+# 超限直接 assertion failed 并导致整图失败。
+MAX_BOX_DIM = 30000
+# 单轴扩展上限：翻译远长于区域时不再无限放大目标框，防止长宽比病态化
+# （曾经 105 列文本把框拉高 105 倍，padding 后画布达到 12 万像素）。
+MAX_BOX_EXPANSION = 3.0
+# 渲染前翻译长度硬上限：正常漫画区域不会超过几百字，超长必然是幻觉。
+MAX_RENDER_CHARS = 1000
+
+
 def parse_font_paths(path: str, default: List[str] = None) -> List[str]:
     if path:
         parsed = path.split(',')
@@ -105,7 +115,7 @@ def resize_regions_to_font_size(img: np.ndarray, text_regions: List['TextBlock']
             # logger.debug(f"Needed rows: {needed_rows}")                
 
             if needed_rows > used_rows:
-                scale_x = ((needed_rows - used_rows) / used_rows) * 1 + 1
+                scale_x = min(((needed_rows - used_rows) / used_rows) * 1 + 1, MAX_BOX_EXPANSION)
                 try:  
                     poly = Polygon(region.unrotated_min_rect[0])
                     minx, miny, maxx, maxy = poly.bounds
@@ -138,7 +148,7 @@ def resize_regions_to_font_size(img: np.ndarray, text_regions: List['TextBlock']
             needed_cols = len(line_text_list)
             # logger.debug(f"Needed columns: {needed_cols}") 
             if needed_cols > used_cols:
-                scale_x = ((needed_cols - used_cols) / used_cols) * 1 + 1
+                scale_x = min(((needed_cols - used_cols) / used_cols) * 1 + 1, MAX_BOX_EXPANSION)
                 try:  
                     poly = Polygon(region.unrotated_min_rect[0])
                     minx, miny, maxx, maxy = poly.bounds
@@ -259,7 +269,15 @@ async def dispatch(
         if render_mask is not None:
             # set render_mask to 1 for the region that is inside dst_points
             cv2.fillConvexPoly(render_mask, dst_points.astype(np.int32), 1)
-        img = render(img, region, dst_points, hyphenate, line_spacing, disable_font_border, adaptive_bg_color)
+        translation = region.get_translation_for_rendering()
+        if len(translation) > MAX_RENDER_CHARS:
+            logger.warning(f'Translation too long ({len(translation)} chars), truncating to {MAX_RENDER_CHARS}: "{translation[:40]}..."')
+            region.translation = translation[:MAX_RENDER_CHARS]
+        try:
+            img = render(img, region, dst_points, hyphenate, line_spacing, disable_font_border, adaptive_bg_color)
+        except Exception as e:
+            # 单个区域渲染失败不应拖垮整张图
+            logger.error(f'Failed to render region "{translation[:30]}..." (skipped): {e}')
     return img
 
 def sample_background_color(img: np.ndarray, dst_points, detected_bg):
@@ -364,7 +382,8 @@ def render(
         
         if r_temp > r_orig:   
             #print(f"Case: r_temp({r_temp}) > r_orig({r_orig}) - Need vertical padding")  
-            h_ext = int((w / r_orig - h) // 2) if r_orig > 0 else 0  
+            h_ext = int((w / r_orig - h) // 2) if r_orig > 0 else 0
+            h_ext = min(h_ext, (MAX_BOX_DIM - h) // 2)
             #print(f"Calculated h_ext = {h_ext}")  
             
             if h_ext >= 0:  
@@ -378,7 +397,8 @@ def render(
                 box = temp_box.copy()  
         else:   
             #print(f"Case: r_temp({r_temp}) <= r_orig({r_orig}) - Need horizontal padding")  
-            w_ext = int((h * r_orig - w) // 2)  
+            w_ext = int((h * r_orig - w) // 2)
+            w_ext = min(w_ext, (MAX_BOX_DIM - w) // 2)
             #print(f"Calculated w_ext = {w_ext}")  
             
             if w_ext >= 0:  
@@ -397,7 +417,8 @@ def render(
         
         if r_temp > r_orig:   
             #print(f"Case: r_temp({r_temp}) > r_orig({r_orig}) - Need vertical padding")  
-            h_ext = int(w / (2 * r_orig) - h / 2) if r_orig > 0 else 0   
+            h_ext = int(w / (2 * r_orig) - h / 2) if r_orig > 0 else 0
+            h_ext = min(h_ext, (MAX_BOX_DIM - h) // 2)
             #print(f"Calculated h_ext = {h_ext}")  
             
             if h_ext >= 0:   
@@ -412,7 +433,8 @@ def render(
                 box = temp_box.copy()   
         else:   
             #print(f"Case: r_temp({r_temp}) <= r_orig({r_orig}) - Need horizontal padding")  
-            w_ext = int((h * r_orig - w) / 2)  
+            w_ext = int((h * r_orig - w) / 2)
+            w_ext = min(w_ext, (MAX_BOX_DIM - w) // 2)
             #print(f"Calculated w_ext = {w_ext}")  
             
             if w_ext >= 0:  

@@ -887,9 +887,15 @@ class MangaTranslator:
                 stripped_text = new_stripped_text  
               
             region.text = stripped_text.strip()     
-            
+
+            # OCR 幻觉过滤：把网纹/晖线等纹理误读成大量重复字符的区域
+            # （如 "実の"×N、300 个 "~"）直接丢弃，避免送进翻译后被放大成
+            # 数千字翻译，进而在渲染阶段撑爆画布导致整图失败。
+            ocr_repetition = await self._check_repetition_hallucination(region.text, threshold=8)
+
             if len(region.text) < config.ocr.min_text_length \
                     or not is_valuable_text(region.text) \
+                    or ocr_repetition \
                     or (not config.translator.no_text_lang_skip and langcodes.tag_distance(region.source_lang, config.translator.target_lang) == 0):
                 if region.text.strip():
                     logger.info(f'Filtered out: {region.text}')
@@ -897,6 +903,8 @@ class MangaTranslator:
                         logger.info('Reason: Text length is less than the minimum required length.')
                     elif not is_valuable_text(region.text):
                         logger.info('Reason: Text is not considered valuable.')
+                    elif ocr_repetition:
+                        logger.info('Reason: Repetitive pattern suggests OCR hallucination (texture/SFX misread).')
                     elif langcodes.tag_distance(region.source_lang, config.translator.target_lang) == 0:
                         logger.info('Reason: Text language matches the target language and no_text_lang_skip is False.')
             else:
@@ -2632,6 +2640,26 @@ class MangaTranslator:
                     consecutive_segments = 1
                 prev_segment = segment
         
+        # 检查 N-gram 连续重复（如 "的果实"×N、"実の"×N 这类多字循环幻觉，
+        # 单字与逐词检查都无法命中：循环内相邻字符/词各不相同）
+        stripped = text.strip()
+        for gram_len in (2, 3, 4):
+            if len(stripped) < gram_len * threshold:
+                break
+            i = 0
+            while i + gram_len <= len(stripped):
+                gram = stripped[i:i + gram_len]
+                count = 0
+                j = i
+                while stripped[j:j + gram_len] == gram:
+                    count += 1
+                    j += gram_len
+                if count >= threshold:
+                    if not silent:
+                        logger.warning(f'Detected n-gram repetition hallucination: "{text[:80]}" - repeated pattern: "{gram}", consecutive count: {count}')
+                    return True
+                i = j if count > 1 else i + 1
+
         # 检查短语级重复
         words = text.split()
         if len(words) >= threshold * 2:
