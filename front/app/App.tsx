@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import {
   type StatusKey,
   processingStatuses,
@@ -14,7 +14,16 @@ import { ImageHandlingArea } from "@/components/ImageHandlingArea";
 import { ResultGallery } from "@/components/ResultGallery";
 import { Header } from "@/components/Header";
 import { loadSettings, saveSettings, clearLegacyFinishedImages } from "@/utils/localStorage";
-import { loadSavedResults, saveResult, clearSavedResults } from "@/utils/resultStore";
+import {
+  loadSavedResults,
+  saveResult,
+  clearSavedResults,
+  loadSavedEntries,
+  saveEntries,
+  loadSavedStatuses,
+  saveStatuses,
+  clearSavedSession,
+} from "@/utils/resultStore";
 import { toPickedFiles, type PickedFile } from "@/utils/files";
 
 // 批量翻译默认并发数(web 模式没有 --batch-size,这是它的等价物;
@@ -115,6 +124,41 @@ export const App: React.FC = () => {
     };
   }, []);
 
+  /** 挂载时恢复待翻译文件列表与各自状态;恢复完成前禁止持久化写回 */
+  const hydratedRef = useRef(false);
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      const savedEntries = await loadSavedEntries();
+      if (cancelled || savedEntries.length === 0) {
+        hydratedRef.current = true;
+        return;
+      }
+      const savedStatuses = await loadSavedStatuses(savedEntries);
+      if (cancelled) return;
+      setEntries(savedEntries);
+      if (savedStatuses.size > 0) setFileStatuses(savedStatuses);
+      hydratedRef.current = true;
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  /** 文件列表变化(选文件夹/增删)防抖写回;挂载初期空列表不覆盖库 */
+  useEffect(() => {
+    if (!hydratedRef.current) return;
+    const t = setTimeout(() => void saveEntries(entries), 300);
+    return () => clearTimeout(t);
+  }, [entries]);
+
+  /** 状态变化防抖写回(状态记录不含 Blob,体量很小) */
+  useEffect(() => {
+    if (!hydratedRef.current) return;
+    const t = setTimeout(() => void saveStatuses(entries, fileStatuses), 500);
+    return () => clearTimeout(t);
+  }, [entries, fileStatuses]);
+
   /** 当前翻译设置(保存到 localStorage,并随每张结果一起记录) */
   const settings: TranslationSettings = useMemo(
     () => ({
@@ -208,6 +252,7 @@ export const App: React.FC = () => {
   const clearForm = () => {
     setEntries([]);
     setFileStatuses(() => new Map());
+    void clearSavedSession();
   };
 
   /** 移除单个待翻译文件 */
