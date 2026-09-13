@@ -14,6 +14,7 @@ import { ImageHandlingArea } from "@/components/ImageHandlingArea";
 import { ResultGallery } from "@/components/ResultGallery";
 import { Header } from "@/components/Header";
 import { loadSettings, saveSettings, clearLegacyFinishedImages } from "@/utils/localStorage";
+import { loadSavedResults, saveResult, clearSavedResults } from "@/utils/resultStore";
 import { toPickedFiles, type PickedFile } from "@/utils/files";
 
 // 批量翻译默认并发数(web 模式没有 --batch-size,这是它的等价物;
@@ -30,7 +31,7 @@ export const App: React.FC = () => {
   const [pendingIds, setPendingIds] = useState<string[] | null>(null);
   const [entries, setEntries] = useState<FileEntry[]>([]);
 
-  // 翻译结果画廊(仅保存在当前会话内存中)
+  // 翻译结果画廊(IndexedDB 持久化,刷新页面自动恢复)
   const [finishedImages, setFinishedImages] = useState<FinishedImage[]>([]);
 
   // Translation Options State Hooks
@@ -101,6 +102,17 @@ export const App: React.FC = () => {
 
     // 清理旧版本遗留的坏数据(见 clearLegacyFinishedImages 注释)
     clearLegacyFinishedImages();
+  }, []);
+
+  /** 挂载时从 IndexedDB 恢复上次的翻译结果(失败则静默降级为空画廊) */
+  useEffect(() => {
+    let cancelled = false;
+    loadSavedResults().then((saved) => {
+      if (!cancelled && saved.length > 0) setFinishedImages(saved);
+    });
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   /** 当前翻译设置(保存到 localStorage,并随每张结果一起记录) */
@@ -210,6 +222,7 @@ export const App: React.FC = () => {
 
   const clearGallery = () => {
     setFinishedImages([]);
+    void clearSavedResults();
   };
 
   /**
@@ -435,6 +448,8 @@ export const App: React.FC = () => {
           finishedImage,
           ...prev.filter(img => img.originalName !== finishedImage.originalName),
         ]);
+        // 同步写入 IndexedDB(按 originalName 覆盖),刷新后可恢复
+        void saveResult(finishedImage);
         break;
       case 1: // 翻訳中
         const newStatus = decodedData as StatusKey;
