@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useRef } from "react";
 import { Icon } from "@iconify/react";
 import type { FinishedImage } from "@/types";
 import { downloadBlob } from "@/utils/download";
@@ -7,6 +7,7 @@ import {
   saveResultsToDisk,
   downloadResultsSequentially,
   supportsDirectoryPicker,
+  type SaveProgressCallback,
 } from "@/utils/saveToDisk";
 
 interface ResultGalleryProps {
@@ -43,44 +44,104 @@ export const ResultGallery: React.FC<ResultGalleryProps> = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [zipping, setZipping] = useState(false);
   const [saving, setSaving] = useState(false);
-  const [saveMsg, setSaveMsg] = useState<string | null>(null);
+  const [saveState, setSaveState] = useState<{
+    phase: "idle" | "picking" | "saving" | "downloading" | "done" | "error";
+    done: number;
+    total: number;
+    current?: string;
+    message?: string;
+  }>({ phase: "idle", done: 0, total: 0 });
+  const saveMsgTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const lastProgressAt = useRef(0);
+
+  // 同一文件重复翻译时只保留最新结果(数组是最新在前),
+  // 否则保存时同名文件被重复写入,进度计数与磁盘上实际文件数对不上
+  const uniqueImages = useMemo(() => {
+    const seen = new Set<string>();
+    return finishedImages.filter((img) => {
+      if (seen.has(img.originalName)) return false;
+      seen.add(img.originalName);
+      return true;
+    });
+  }, [finishedImages]);
+
+  const saveProgressCb: SaveProgressCallback = (done, total, current) => {
+    // 小图写入很快,节流到 ~80ms 一次防止刷爆渲染;done===total 强制刷新,
+    // 保证结束时进度条一定停在 100%
+    const now = Date.now();
+    if (now - lastProgressAt.current < 80 && done < total) return;
+    lastProgressAt.current = now;
+    setSaveState((s) => ({
+      ...s,
+      phase: s.phase === "picking" ? "saving" : s.phase,
+      done,
+      total,
+      current,
+    }));
+  };
 
   /** 保存到磁盘:写入源文件夹同级目录,文件名加 _translated 后缀 */
   const handleSaveToDisk = async () => {
-    if (saving || finishedImages.length === 0) return;
+    if (saving || uniqueImages.length === 0) return;
+    if (saveMsgTimer.current) {
+      clearTimeout(saveMsgTimer.current);
+      saveMsgTimer.current = null;
+    }
     setSaving(true);
-    setSaveMsg("正在保存…");
+    lastProgressAt.current = 0;
+    setSaveState({ phase: "picking", done: 0, total: uniqueImages.length });
     try {
-      const res = await saveResultsToDisk(finishedImages, (done, total) =>
-        setSaveMsg(`正在保存 ${done}/${total}…`)
-      );
+      const res = await saveResultsToDisk(uniqueImages, saveProgressCb);
       if (res === "saved") {
-        setSaveMsg("已保存到所选目录");
+        setSaveState({
+          phase: "done",
+          done: uniqueImages.length,
+          total: uniqueImages.length,
+          message: `已保存 ${uniqueImages.length} 张到所选目录`,
+        });
       } else if (res === "fallback") {
-        await downloadResultsSequentially(finishedImages, (done, total) =>
-          setSaveMsg(`正在下载 ${done}/${total}…`)
-        );
-        setSaveMsg("浏览器不支持目录选择,已逐张下载");
+        setSaveState({ phase: "downloading", done: 0, total: uniqueImages.length });
+        await downloadResultsSequentially(uniqueImages, saveProgressCb);
+        setSaveState({
+          phase: "done",
+          done: uniqueImages.length,
+          total: uniqueImages.length,
+          message: `已逐张下载 ${uniqueImages.length} 张(浏览器不支持目录选择)`,
+        });
       } else {
-        setSaveMsg(null); // 用户取消
+        setSaveState({ phase: "idle", done: 0, total: 0 }); // 用户取消
       }
     } catch (err) {
       console.error(err);
-      setSaveMsg("保存失败:" + (err instanceof Error ? err.message : String(err)));
+      setSaveState({
+        phase: "error",
+        done: 0,
+        total: 0,
+        message: "保存失败:" + (err instanceof Error ? err.message : String(err)),
+      });
     } finally {
       setSaving(false);
-      setTimeout(() => setSaveMsg(null), 5000);
+      saveMsgTimer.current = setTimeout(
+        () => setSaveState({ phase: "idle", done: 0, total: 0 }),
+        6000
+      );
     }
   };
 
+  const savePhase = saveState.phase;
+  const savePct =
+    saveState.total > 0
+      ? Math.round((saveState.done / saveState.total) * 100)
+      : 0;
+
   /** 打包下载全部结果(ZIP,保留文件夹结构) */
   const handleDownloadAllZip = async () => {
-    if (zipping || finishedImages.length === 0) return;
+    if (zipping || uniqueImages.length === 0) return;
     setZipping(true);
     try {
       const JSZip = (await import("jszip")).default;
       const zip = new JSZip();
-      for (const image of finishedImages) {
+      for (const image of uniqueImages) {
         zip.file(`translated/${image.originalName}`, image.result);
       }
       const blob = await zip.generateAsync({ type: "blob" });
@@ -103,7 +164,7 @@ export const ResultGallery: React.FC<ResultGalleryProps> = ({
   const navigateImage = (direction: "prev" | "next") => {
     if (!selectedImage) return;
 
-    const currentIndex = finishedImages.findIndex(
+    const currentIndex = uniqueImages.findIndex(
       (img) => img.id === selectedImage.id
     );
     if (currentIndex === -1) return;
@@ -111,13 +172,13 @@ export const ResultGallery: React.FC<ResultGalleryProps> = ({
     let newIndex: number;
     if (direction === "prev") {
       newIndex =
-        currentIndex === 0 ? finishedImages.length - 1 : currentIndex - 1;
+        currentIndex === 0 ? uniqueImages.length - 1 : currentIndex - 1;
     } else {
       newIndex =
-        currentIndex === finishedImages.length - 1 ? 0 : currentIndex + 1;
+        currentIndex === uniqueImages.length - 1 ? 0 : currentIndex + 1;
     }
 
-    setSelectedImage(finishedImages[newIndex]);
+    setSelectedImage(uniqueImages[newIndex]);
   };
 
   // 键盘导航(挂在 window 上,无需手动聚焦)
@@ -140,15 +201,22 @@ export const ResultGallery: React.FC<ResultGalleryProps> = ({
     return () => window.removeEventListener("keydown", onKeyDown);
   });
 
+  // 组件卸载时清掉保存提示的定时器,避免卸载后 setState
+  useEffect(() => {
+    return () => {
+      if (saveMsgTimer.current) clearTimeout(saveMsgTimer.current);
+    };
+  }, []);
+
   const handleClearGallery = () => {
     if (
-      window.confirm(`确定要清空全部 ${finishedImages.length} 张翻译结果吗?`)
+      window.confirm(`确定要清空全部 ${uniqueImages.length} 张翻译结果吗?`)
     ) {
       onClearGallery();
     }
   };
 
-  if (finishedImages.length === 0) {
+  if (uniqueImages.length === 0) {
     return (
       <div className="text-center py-12 text-gray-500">
         <Icon
@@ -164,13 +232,55 @@ export const ResultGallery: React.FC<ResultGalleryProps> = ({
   return (
     <>
       {/* Gallery Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-y-2 mb-6">
         <h3 className="text-lg font-semibold text-gray-800">
-          翻译结果({finishedImages.length})
+          翻译结果({uniqueImages.length})
         </h3>
-        <div className="flex items-center gap-2">
-          {saveMsg && (
-            <span className="text-xs text-gray-500">{saveMsg}</span>
+        <div className="flex flex-wrap items-center gap-2">
+          {(savePhase === "picking" ||
+            savePhase === "saving" ||
+            savePhase === "downloading") && (
+            <div className="flex items-center gap-2 min-w-0">
+              {savePhase === "picking" ? (
+                <span className="text-xs text-gray-500 whitespace-nowrap">
+                  请在弹出的窗口中选择保存目录…
+                </span>
+              ) : (
+                <>
+                  <div className="w-32 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+                    <div
+                      className={`h-full transition-all duration-150 ${
+                        savePhase === "downloading"
+                          ? "bg-blue-500"
+                          : "bg-green-500"
+                      }`}
+                      style={{ width: `${savePct}%` }}
+                    />
+                  </div>
+                  <span className="text-xs text-gray-600 tabular-nums whitespace-nowrap">
+                    {savePhase === "downloading" ? "下载" : "保存"}{" "}
+                    {saveState.done}/{saveState.total}({savePct}%)
+                  </span>
+                  {saveState.current && (
+                    <span
+                      className="text-xs text-gray-400 max-w-[160px] truncate"
+                      title={saveState.current}
+                    >
+                      {saveState.current}
+                    </span>
+                  )}
+                </>
+              )}
+            </div>
+          )}
+          {saveState.message && (
+            <span
+              className={`text-xs ${
+                savePhase === "error" ? "text-red-600" : "text-green-600"
+              }`}
+            >
+              {saveState.message}
+            </span>
           )}
           <button
             onClick={handleSaveToDisk}
@@ -202,7 +312,7 @@ export const ResultGallery: React.FC<ResultGalleryProps> = ({
 
       {/* Image Grid */}
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-        {finishedImages.map((image) => (
+        {uniqueImages.map((image) => (
           <div
             key={image.id}
             className="group cursor-pointer bg-white rounded-lg border hover:border-blue-400 hover:shadow-md transition-all duration-200"

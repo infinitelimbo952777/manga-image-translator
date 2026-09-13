@@ -429,7 +429,12 @@ export const App: React.FC = () => {
           settings,
         };
 
-        setFinishedImages(prev => [finishedImage, ...prev]);
+        // 同一文件重新翻译时替换旧结果,避免画廊里出现同名重复条目
+        // (重复条目会让"保存到磁盘"的进度计数与实际落盘文件数对不上)
+        setFinishedImages(prev => [
+          finishedImage,
+          ...prev.filter(img => img.originalName !== finishedImage.originalName),
+        ]);
         break;
       case 1: // 翻訳中
         const newStatus = decodedData as StatusKey;

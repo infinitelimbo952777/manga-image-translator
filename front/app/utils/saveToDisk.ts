@@ -20,6 +20,9 @@ async function ensureDir(dir: any, name: string): Promise<any> {
   return dir.getDirectoryHandle(name, { create: true });
 }
 
+/** (已完成数, 总数, 当前文件名) */
+export type SaveProgressCallback = (done: number, total: number, current?: string) => void;
+
 /**
  * 把翻译结果写到磁盘:
  *  - 弹出目录选择器,用户选择"源文件夹所在目录"即可 —— 译文会写入同级的
@@ -29,7 +32,7 @@ async function ensureDir(dir: any, name: string): Promise<any> {
  */
 export async function saveResultsToDisk(
   images: FinishedImage[],
-  onProgress?: (done: number, total: number) => void
+  onProgress?: SaveProgressCallback
 ): Promise<"saved" | "cancelled" | "fallback"> {
   if (!supportsDirectoryPicker()) return "fallback";
 
@@ -69,7 +72,7 @@ export async function saveResultsToDisk(
       const writable = await fileHandle.createWritable();
       await writable.write(image.result);
       await writable.close();
-      onProgress?.(i + 1, images.length);
+      onProgress?.(i + 1, images.length, translatedFileName(image.originalName));
     }
     return "saved";
   } catch (err) {
@@ -81,11 +84,12 @@ export async function saveResultsToDisk(
 /** 浏览器不支持目录选择器时,退化为逐张下载(文件名同样加后缀) */
 export async function downloadResultsSequentially(
   images: FinishedImage[],
-  onProgress?: (done: number, total: number) => void
+  onProgress?: SaveProgressCallback
 ): Promise<void> {
   for (let i = 0; i < images.length; i++) {
-    downloadBlob(images[i].result, translatedFileName(images[i].originalName));
-    onProgress?.(i + 1, images.length);
+    const name = translatedFileName(images[i].originalName);
+    downloadBlob(images[i].result, name);
+    onProgress?.(i + 1, images.length, name);
     // 间隔一点,避免浏览器拦截连续多文件下载
     await new Promise((r) => setTimeout(r, 300));
   }
