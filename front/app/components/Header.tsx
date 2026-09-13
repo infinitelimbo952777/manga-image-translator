@@ -5,20 +5,25 @@ import { Disclosure } from "@headlessui/react";
 type Props = {};
 
 export const Header: React.FC<Props> = () => {
-  const [quitting, setQuitting] = useState(false);
+  const [phase, setPhase] = useState<"idle" | "quitting" | "done">("idle");
 
   const handleQuit = async () => {
     const confirmed = window.confirm(
       "确定要退出吗?\n\n将关闭翻译服务(worker、后端)和本页面服务,并释放显存/内存。\n重新启动:双击项目目录下的 start_webui_silent.bat"
     );
     if (!confirmed) return;
-    setQuitting(true);
+    setPhase("quitting");
     try {
       // 后端会在响应后关闭自己、worker 和前端服务
       await fetch("/api/shutdown", { method: "POST" });
     } catch {
       // 服务可能已先行关闭,视同成功
     }
+    setPhase("done");
+    // 浏览器安全限制:网页无法关闭不是由脚本打开的标签页,这里的
+    // window.close() 只在标签页恰好是脚本打开时生效;用户手动打开的
+    // 标签页会被浏览器静默忽略,由下方遮罩提示手动关闭。
+    window.close();
   };
 
   return (
@@ -60,17 +65,25 @@ export const Header: React.FC<Props> = () => {
       </Disclosure>
 
       {/* 正在退出遮罩 */}
-      {quitting && (
+      {phase !== "idle" && (
         <div className="fixed inset-0 bg-black/70 z-[100] flex items-center justify-center">
           <div className="bg-white rounded-lg p-8 max-w-md text-center">
             <Icon
-              icon="carbon:power"
-              className="w-10 h-10 mx-auto text-red-500 mb-3"
+              icon={phase === "done" ? "carbon:checkmark-outline" : "carbon:power"}
+              className={`w-10 h-10 mx-auto mb-3 ${phase === "done" ? "text-green-500" : "text-red-500"}`}
             />
-            <div className="text-lg font-medium text-gray-800">正在退出…</div>
-            <div className="mt-2 text-sm text-gray-600">
-              翻译服务与本页面服务即将关闭,稍后可直接关闭此标签页。
+            <div className="text-lg font-medium text-gray-800">
+              {phase === "done" ? "服务已全部退出" : "正在退出…"}
             </div>
+            {phase === "done" && (
+              <div className="mt-2 text-sm text-gray-600">
+                浏览器不允许网页自动关闭标签页,请按
+                <kbd className="mx-1 px-1.5 py-0.5 text-xs font-semibold bg-gray-100 border border-gray-300 rounded">
+                  Ctrl+W
+                </kbd>
+                关闭此标签页。
+              </div>
+            )}
             <div className="mt-3 text-xs text-gray-400">
               重新启动:双击项目目录下的 start_webui_silent.bat
             </div>
